@@ -23,6 +23,6 @@ class SheetsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'sheets');
+        $this->mergeConfigFrom(__DIR__.'/../config/sheets.php', 'sheets');
     }
 }
