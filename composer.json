@@ -17,12 +17,12 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "^5.6",
+        "illuminate/support": "~5.6.0",
         "league/commonmark": "^0.17.0",
         "spatie/yaml-front-matter": "^2.0"
     },
     "require-dev": {
-        "illuminate/filesystem": "^5.6",
+        "illuminate/filesystem": "~5.6.0",
         "larapack/dd": "^1.0",
         "league/flysystem": "^1.0",
         "phpunit/phpunit": "^7.0"
