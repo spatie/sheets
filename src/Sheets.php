@@ -43,12 +43,13 @@ class Sheets
             $options['content_parser'] ?? FrontMatterWithMarkdownParser::class
         );
 
-        $factory = new Factory($pathParser, $contentParser);
+        $sheetClass = $options['sheet_class'] ?? Sheet::class;
 
-        $repository = new FilesystemRepository(
-            $factory,
-            app('filesystem')->disk($options['disk'] ?? $name)
-        );
+        $factory = new Factory($pathParser, $contentParser, $sheetClass);
+
+        $filesystem = app('filesystem')->disk($options['disk'] ?? $name);
+
+        $repository = new FilesystemRepository($factory, $filesystem);
 
         $this->collections[$name] = $repository;
     }
