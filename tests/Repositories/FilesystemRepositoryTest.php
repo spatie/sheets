@@ -6,20 +6,20 @@ use PHPUnit\Framework\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
 use Illuminate\Support\Collection;
-use Spatie\Sheets\Tests\Concerns\NeedsFactory;
-use Spatie\Sheets\Tests\Concerns\NeedsFilesystem;
+use Spatie\Sheets\Tests\Concerns\UsesFactory;
+use Spatie\Sheets\Tests\Concerns\UsesFilesystem;
 
 class FilesystemRepositoryTest extends TestCase
 {
-    use NeedsFactory;
-    use NeedsFilesystem;
+    use UsesFactory;
+    use UsesFilesystem;
 
     /** @test */
     public function it_can_get_a_sheet()
     {
         $filesystemRepository = new FilesystemRepository(
             $this->createFactory(),
-            $this->createFilesystem(__DIR__.'/content')
+            $this->createFilesystem()
         );
 
         $sheet = $filesystemRepository->get('hello-world');
@@ -35,7 +35,7 @@ class FilesystemRepositoryTest extends TestCase
     {
         $filesystemRepository = new FilesystemRepository(
             $this->createFactory(),
-            $this->createFilesystem(__DIR__.'/content')
+            $this->createFilesystem()
         );
 
         $sheets = $filesystemRepository->all();

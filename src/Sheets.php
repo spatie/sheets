@@ -2,18 +2,22 @@
 
 namespace Spatie\Sheets;
 
+use Illuminate\Filesystem\FilesystemManager;
+use Illuminate\Support\Collection;
 use RuntimeException;
 use Spatie\Sheets\ContentParsers\FrontMatterWithMarkdownParser;
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Repositories\FilesystemRepository;
-use Illuminate\Filesystem\FilesystemManager;
 
-class Sheets
+class Sheets implements Repository
 {
     /** @var \Spatie\Sheets\Repository[] */
     protected $collections;
 
-    public function __construct(array $collections)
+    /** @var string|null */
+    protected $default;
+
+    public function __construct(array $collections, string $default = null)
     {
         foreach ($collections as $name => $options) {
             if (is_string($options)) {
@@ -22,6 +26,8 @@ class Sheets
                 $this->registerCollection($name, $options);
             }
         }
+
+        $this->default = $default;
     }
 
     public function collection(string $name): Repository
@@ -52,5 +58,26 @@ class Sheets
         $repository = new FilesystemRepository($factory, $filesystem);
 
         $this->collections[$name] = $repository;
+    }
+
+    public function get(string $path): ?Sheet
+    {
+        return $this->defaultCollection()->get($path);
+    }
+
+    public function all(): Collection
+    {
+        return $this->defaultCollection()->all();
+    }
+
+    protected function defaultCollection(): Repository
+    {
+        if (empty($this->collections)) {
+            throw new RuntimeException("Can't retrieve a default collection if no collections are registered.");
+        }
+
+        return $this->collection(
+            $this->default ?? array_keys($this->collections)[0]
+        );
     }
 }

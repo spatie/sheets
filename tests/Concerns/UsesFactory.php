@@ -7,7 +7,7 @@ use Spatie\Sheets\ContentParsers\FrontMatterWithMarkdownParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;
 
-trait NeedsFactory
+trait UsesFactory
 {
     protected function createFactory(): Factory
     {

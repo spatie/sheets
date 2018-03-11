@@ -20,6 +20,7 @@
         "illuminate/contracts": "~5.6.0",
         "illuminate/support": "~5.6.0",
         "league/commonmark": "^0.17.0",
+        "orchestra/testbench": "^3.6",
         "spatie/yaml-front-matter": "^2.0"
     },
     "require-dev": {

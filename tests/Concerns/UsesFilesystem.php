@@ -7,11 +7,11 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem as Flysystem;
 
-trait NeedsFilesystem
+trait UsesFilesystem
 {
-    protected function createFilesystem(string $root): Filesystem
+    protected function createFilesystem(): Filesystem
     {
-        $adapter = new Local($root);
+        $adapter = new Local(__DIR__.'/../fixtures/content');
 
         $flysystem = new Flysystem($adapter);
 
