@@ -13,7 +13,7 @@ class SlugWithDateParser implements PathParser
 
         return [
             'date' => Carbon::parse($parts[0]),
-            'slug' => str_slug($parts[1] ?? ''),
+            'slug' => $parts[1] ?? '',
         ];
     }
 }

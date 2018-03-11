@@ -24,5 +24,11 @@ class SheetsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/sheets.php', 'sheets');
+
+        $this->app->singleton(Sheets::class, function () {
+            return new Sheets(config('sheets.collections'));
+        });
+
+        $this->app->alias(Sheets::class, 'sheets');
     }
 }
