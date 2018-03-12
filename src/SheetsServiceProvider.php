@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
+use Spatie\Sheets\PathParsers\SlugParser;
+use Illuminate\Filesystem\FilesystemManager;
 
 class SheetsServiceProvider extends ServiceProvider
 {
@@ -41,7 +43,28 @@ class SheetsServiceProvider extends ServiceProvider
             });
 
         $this->app->singleton(Sheets::class, function () {
-            return new Sheets(config('sheets.collections'), config('sheets.default'));
+            $sheets = new Sheets();
+
+            foreach (config('sheets.collections', []) as $name => $options) {
+                if (is_int($name)) {
+                    $name = $options;
+                    $options = [];
+                }
+
+                $sheets->registerCollection(
+                    $name,
+                    $this->app->make($options['path_parser'] ?? SlugParser::class),
+                    $this->app->make($options['content_parser'] ?? MarkdownWithFrontMatterParser::class),
+                    $options['sheet_class'] ?? Sheet::class,
+                    $this->app->make(FilesystemManager::class)->disk($options['disk'] ?? $name)
+                );
+            }
+
+            if (config('sheets.default')) {
+                $sheets->setDefaultCollection(config('sheets.default'));
+            }
+
+            return $sheets;
         });
 
         $this->app->alias(Sheets::class, 'sheets');

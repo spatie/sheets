@@ -8,6 +8,7 @@ use RuntimeException;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Repositories\FilesystemRepository;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class Sheets implements Repository
 {
@@ -15,20 +16,7 @@ class Sheets implements Repository
     protected $collections;
 
     /** @var string|null */
-    protected $default;
-
-    public function __construct(array $collections, string $default = null)
-    {
-        foreach ($collections as $name => $options) {
-            if (is_string($options)) {
-                $this->registerCollection($options, []);
-            } else {
-                $this->registerCollection($name, $options);
-            }
-        }
-
-        $this->default = $default;
-    }
+    protected $defaultCollection;
 
     public function collection(string $name): Repository
     {
@@ -39,21 +27,14 @@ class Sheets implements Repository
         return $this->collections[$name];
     }
 
-    public function registerCollection(string $name, array $options)
-    {
-        $pathParser = app(
-            $options['path_parser'] ?? SlugParser::class
-        );
-
-        $contentParser = app(
-            $options['content_parser'] ?? MarkdownWithFrontMatterParser::class
-        );
-
-        $sheetClass = $options['sheet_class'] ?? Sheet::class;
-
+    public function registerCollection(
+        string $name,
+        PathParser $pathParser,
+        ContentParser $contentParser,
+        string $sheetClass,
+        Filesystem $filesystem
+    ) {
         $factory = new Factory($pathParser, $contentParser, $sheetClass);
-
-        $filesystem = app('filesystem')->disk($options['disk'] ?? $name);
 
         $repository = new FilesystemRepository($factory, $filesystem);
 
@@ -70,6 +51,15 @@ class Sheets implements Repository
         return $this->defaultCollection()->all();
     }
 
+    public function setDefaultCollection(string $defaultCollection)
+    {
+        if (! isset($this->collections[$defaultCollection])) {
+            throw new RuntimeException("Can't set default collection \"{$defaultCollection}\" because it isn't registered.");
+        }
+
+        $this->defaultCollection = $defaultCollection;
+    }
+
     protected function defaultCollection(): Repository
     {
         if (empty($this->collections)) {
@@ -77,7 +67,7 @@ class Sheets implements Repository
         }
 
         return $this->collection(
-            $this->default ?? array_keys($this->collections)[0]
+            $this->defaultCollection ?? array_keys($this->collections)[0]
         );
     }
 }

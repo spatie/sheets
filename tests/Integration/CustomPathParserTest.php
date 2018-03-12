@@ -18,8 +18,8 @@ class CustomPathParserTest extends TestCase
         $this->assertInstanceOf(Collection::class, $posts);
         $this->assertCount(1, $posts);
         $this->assertContainsOnlyInstancesOf(Sheet::class, $posts);
-        $this->assertEquals(Carbon::parse('1992-02-01'), $posts[0]->date);
         $this->assertEquals('My first post', $posts[0]->title);
+        $this->assertEquals(Carbon::parse('1992-02-01'), $posts[0]->date);
     }
 
     protected function getEnvironmentSetUp($app)
