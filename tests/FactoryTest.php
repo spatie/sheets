@@ -4,7 +4,7 @@ namespace Spatie\Sheets\Tests;
 
 use League\CommonMark\CommonMarkConverter;
 use PHPUnit\Framework\TestCase;
-use Spatie\Sheets\ContentParsers\FrontMatterWithMarkdownParser;
+use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;
 
@@ -15,7 +15,7 @@ class FactoryTest extends TestCase
     {
         $factory = new Factory(
             new SlugParser(),
-            new FrontMatterWithMarkdownParser(new CommonMarkConverter())
+            new MarkdownWithFrontMatterParser(new CommonMarkConverter())
         );
 
         $path = 'hello-world.md';

@@ -6,7 +6,7 @@ use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-class FrontMatterWithMarkdownParser implements ContentParser
+class MarkdownWithFrontMatterParser implements ContentParser
 {
     /** @var \League\CommonMark\CommonMarkConverter */
     protected $commonMarkConverter;

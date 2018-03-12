@@ -6,10 +6,10 @@ use Illuminate\Support\Collection;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Sheet;
 
-class SheetsTest extends TestCase
+class CustomDiskTest extends TestCase
 {
     /** @test */
-    public function it_can_maintain_a_default_collection()
+    public function it_can_maintain_a_collection_on_a_specific_disk()
     {
         $content = $this->app->make(Sheets::class)->all();
 
@@ -26,7 +26,11 @@ class SheetsTest extends TestCase
         ]);
 
         $app['config']->set('sheets', [
-            'collections' => ['content'],
+            'collections' => [
+                'posts' => [
+                    'disk' => 'content'
+                ],
+            ],
         ]);
     }
 }

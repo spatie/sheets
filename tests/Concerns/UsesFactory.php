@@ -3,7 +3,7 @@
 namespace Spatie\Sheets\Tests\Concerns;
 
 use League\CommonMark\CommonMarkConverter;
-use Spatie\Sheets\ContentParsers\FrontMatterWithMarkdownParser;
+use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;
 
@@ -13,7 +13,7 @@ trait UsesFactory
     {
         return new Factory(
             new SlugParser(),
-            new FrontMatterWithMarkdownParser(new CommonMarkConverter())
+            new MarkdownWithFrontMatterParser(new CommonMarkConverter())
         );
     }
 }

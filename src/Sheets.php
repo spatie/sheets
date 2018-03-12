@@ -5,7 +5,7 @@ namespace Spatie\Sheets;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\Collection;
 use RuntimeException;
-use Spatie\Sheets\ContentParsers\FrontMatterWithMarkdownParser;
+use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 
@@ -46,7 +46,7 @@ class Sheets implements Repository
         );
 
         $contentParser = app(
-            $options['content_parser'] ?? FrontMatterWithMarkdownParser::class
+            $options['content_parser'] ?? MarkdownWithFrontMatterParser::class
         );
 
         $sheetClass = $options['sheet_class'] ?? Sheet::class;

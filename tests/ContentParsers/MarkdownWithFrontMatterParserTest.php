@@ -3,15 +3,15 @@
 namespace Spatie\Sheets\Tests\ContentParsers;
 
 use PHPUnit\Framework\TestCase;
-use Spatie\Sheets\ContentParsers\FrontMatterWithMarkdownParser;
+use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use League\CommonMark\CommonMarkConverter;
 
-class FrontMatterWithMarkdownParserTest extends TestCase
+class MarkdownWithFrontMatterParserTest extends TestCase
 {
     /** @test */
     public function it_converts_a_front_matter_document_to_attributes()
     {
-        $frontMatterWithMarkdownParser = new FrontMatterWithMarkdownParser(
+        $markdownWithFrontMatterParser = new MarkdownWithFrontMatterParser(
             new CommonMarkConverter()
         );
 
@@ -27,6 +27,6 @@ class FrontMatterWithMarkdownParserTest extends TestCase
             'contents' => "<h1>Hello, world!</h1>\n",
         ];
 
-        $this->assertEquals($expected, $frontMatterWithMarkdownParser->parse($contents));
+        $this->assertEquals($expected, $markdownWithFrontMatterParser->parse($contents));
     }
 }
