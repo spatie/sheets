@@ -45,18 +45,20 @@ class SheetsServiceProvider extends ServiceProvider
         $this->app->singleton(Sheets::class, function () {
             $sheets = new Sheets();
 
-            foreach (config('sheets.collections', []) as $name => $options) {
+            foreach (config('sheets.collections', []) as $name => $config) {
                 if (is_int($name)) {
-                    $name = $options;
-                    $options = [];
+                    $name = $config;
+                    $config = [];
                 }
+
+                $config = $this->mergeCollectionConfigWithDefaults($name, $config);
 
                 $sheets->registerCollection(
                     $name,
-                    $this->app->make($options['path_parser'] ?? SlugParser::class),
-                    $this->app->make($options['content_parser'] ?? MarkdownWithFrontMatterParser::class),
-                    $options['sheet_class'] ?? Sheet::class,
-                    $this->app->make(FilesystemManager::class)->disk($options['disk'] ?? $name)
+                    $this->app->make($config['path_parser']),
+                    $this->app->make($config['content_parser']),
+                    $config['sheet_class'],
+                    $this->app->make(FilesystemManager::class)->disk($config['disk'])
                 );
             }
 
@@ -68,5 +70,17 @@ class SheetsServiceProvider extends ServiceProvider
         });
 
         $this->app->alias(Sheets::class, 'sheets');
+    }
+
+    protected function mergeCollectionConfigWithDefaults(string $name, array $config): array
+    {
+        $defaults = [
+            'path_parser' => SlugParser::class,
+            'content_parser' => MarkdownWithFrontMatterParser::class,
+            'sheet_class' => Sheet::class,
+            'disk' => $name,
+        ];
+
+        return array_merge($defaults, $config);
     }
 }
