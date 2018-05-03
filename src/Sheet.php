@@ -22,4 +22,9 @@ class Sheet
 
         return $value;
     }
+
+    public function __isset(string $key)
+    {
+        return ! is_null($this->$key);
+    }
 }
