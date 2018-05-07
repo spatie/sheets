@@ -86,7 +86,7 @@ php artisan vendor:publish --provider="Spatie\Sheets\SheetsServiceProvider" --ta
 
 ## Usage
 
-You can use the package with a facade, helper function, or with dependency injection.
+The `Sheets` instance is available through a facade, helper function, or dependency injection.
 
 ```php
 use Sheets;
@@ -112,7 +112,88 @@ class SheetsController
 }
 ```
 
-### Default collections
+### Creating your first collection
+
+A collection maps to a folder in your filesystem of choice. Without configuration name, Sheets will look for a disk configured in `config/filesystems.php` with the same name as the collection.
+
+```php
+// config/filesystems.php
+return [
+    'disks' => [
+        // ...
+        'pages' => [
+            'driver' => 'local',
+            'root' => base_path('pages'),
+        ],
+    ],
+];
+
+// config/sheets.php
+return [
+    'collections' => ['pages'],
+];
+```
+
+Sheets will create a repository for the `posts` folder in your application.
+
+```
+app/
+config/
+posts/
+  hello-world.md
+```
+
+```
+---
+title: Hello, world!
+---
+# Hello, world!
+
+Welcome to sheets!
+```
+
+A repository has two public methods: `all()` and `get($identifier)`. You can get a repository instance through the `collection` method on `Sheets`.
+
+`Repository::all()` will return an instance of `Illuminate\Support\Collection` containing `Spatie\Sheets\Sheet` instances.
+
+```php
+Sheets::collection('posts')->all();
+```
+
+`Repository::get($identifier)` returns a single `Sheet` instance or `null`. By default, the identifier is the `slug` field (which is the filename without the extension). Read the [custom identifiers](#custom-identifiers) section if you'd prefer a different way to query your Sheets reposisitory.
+
+```php
+Sheets::collection('posts')->get('hello-world');
+```
+
+A `Sheet` instance is very similar to an Eloquent model. It holds an array of attributes that are available as properties. By default it will contain the path as a `slug` field, all front matter data, and a `contents` field containing an html representation of the contained markdown.
+
+```
+$sheet = Sheets::collection('posts')->get('hello-world');
+
+echo $sheet->slug;
+// 'hello-world'
+
+echo $sheet->title;
+// 'Hello, world!'
+
+echo $sheet->contents;
+// '<h1>Hello, world!</h1><p>Welcome to sheets!</p>'
+```
+
+You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll dive into that later.
+
+### Advanced usage
+
+### Custom `Sheet` implementations
+
+...
+
+### Custom identifiers
+
+...
+
+#### Default collections
 
 You can call `get` or `all` on the `Sheets` instance without specifying a collection first to query the default collection.
 
@@ -122,6 +203,8 @@ $sheets->all();
 ```
 
 You can specify a default collection in `sheets.config`. If no default collection is specified, the default collection will be the **first** collection registered in the `collections` array.
+
+Here the default collection will implicitly be set to `posts`:
 
 ```php
 return [
@@ -133,7 +216,7 @@ return [
 ];
 ```
 
-In the above example, the default collection will implicitly be set to `posts`.
+Below the default collection is set to `pages`:
 
 ```php
 return [
@@ -145,8 +228,6 @@ return [
     ],
 ];
 ```
-
-Here the default collection is set to `pages`.
 
 ### Testing
 
