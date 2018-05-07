@@ -15,7 +15,7 @@ title: Home
 ---
 # Hello, world!
 
-Welcome to sheets!
+Welcome to Sheets!
 ```
 
 ```php
@@ -47,26 +47,14 @@ class SheetController
 @endsection
 ```
 
-Alternatively, you can use our router macro to get started without creating a controller.
-
-```php
-Route::sheets('/', [
-    'sheet' => 'home',
-    'view' => 'sheet',
-]);
-
-Route::sheets('/{sheet}', 'pages', [
-    'view' => 'sheet',
-]);
-```
-
 ### Features
 
 - Allows any document format (by default markdown files with front matter)
 - Stores your content wherever you want (uses Laravel's filesystem component)
 - Keeps multiple collections of content (e.g. posts, pages, etc.)
 - Casts your document contents to Eloquent-like classes with accessors
-- Convention over configuration, near-0 setup if you use the defaults
+- Exposes a router macro to map sheets to url's and views without needing a controller
+- Convention over configuration, near-zero setup if you use the defaults
 
 ## Installation
 
@@ -149,7 +137,7 @@ title: Hello, world!
 ---
 # Hello, world!
 
-Welcome to sheets!
+Welcome to Sheets!
 ```
 
 A repository has two public methods: `all()` and `get($identifier)`. You can get a repository instance through the `collection` method on `Sheets`.
@@ -178,10 +166,25 @@ echo $sheet->title;
 // 'Hello, world!'
 
 echo $sheet->contents;
-// '<h1>Hello, world!</h1><p>Welcome to sheets!</p>'
+// '<h1>Hello, world!</h1><p>Welcome to Sheets!</p>'
 ```
 
 You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll dive into that later.
+
+### Router macro
+
+You can use our router macro to get started without creating a controller.
+
+```php
+Route::sheets('/', [
+    'sheet' => 'home',
+    'view' => 'sheet',
+]);
+
+Route::sheets('/{sheet}', 'pages', [
+    'view' => 'sheet',
+]);
+```
 
 ### Advanced usage
 
