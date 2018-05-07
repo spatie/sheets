@@ -1,11 +1,11 @@
-# Very short description of the package
+# Store & retrieve your static content in plain text files
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
 [![Build Status](https://img.shields.io/travis/spatie/sheets/master.svg?style=flat-square)](https://travis-ci.org/spatie/sheets)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/sheets.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/sheets)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
 
-Sheets is a Laravel package to read & index content stored as text files. Markdown & front matter are supported out of the box, but you can parse & extract data from your files in whatever format you prefer.
+Sheets is a Laravel package to store, retrieve & index content stored as text files. Markdown & front matter are supported out of the box, but you can parse & extract data from your files in whatever format you prefer.
 
 Sheets can be added to any existing Laravel application and is a perfect fit for documentation sites & personal blogs.
 
@@ -19,12 +19,19 @@ Welcome to sheets!
 ```
 
 ```php
-class HomeController
+class SheetController
 {
     public function index(Sheets $sheets)
     {
-        return view('page', [
-            $page => $sheets->get('home'),
+        return view('sheet', [
+            $sheet => $sheets->get('home'),
+        ]);
+    }
+
+    public function show(string $id, Sheets $sheets)
+    {
+        return view('sheet', [
+            $sheet => $sheets->get($id),
         ]);
     }
 }
@@ -32,12 +39,25 @@ class HomeController
 
 ```blade
 @extends('layouts.app', [
-    'title' => $page->title,
+    'title' => $sheet->title,
 ])
 
 @section('main')
-    {{ $page->content }}
+    {{ $sheet->content }}
 @endsection
+```
+
+Alternatively, you can use our router macro to get started without creating a controller.
+
+```php
+Route::sheets('/', [
+    'sheet' => 'home',
+    'view' => 'sheet',
+]);
+
+Route::sheets('/{sheet}', 'pages', [
+    'view' => 'sheet',
+]);
 ```
 
 ### Features
@@ -46,6 +66,7 @@ class HomeController
 - Stores your content wherever you want (uses Laravel's filesystem component)
 - Keeps multiple collections of content (e.g. posts, pages, etc.)
 - Casts your document contents to Eloquent-like classes with accessors
+- Convention over configuration, near-0 setup if you use the defaults
 
 ## Installation
 
