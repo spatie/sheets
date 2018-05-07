@@ -1,25 +1,65 @@
 # Very short description of the package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
-[![Build Status](https://img.shields.io/travis/spatie/:package_name/master.svg?style=flat-square)](https://travis-ci.org/spatie/:package_name)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/:package_name)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
+[![Build Status](https://img.shields.io/travis/spatie/sheets/master.svg?style=flat-square)](https://travis-ci.org/spatie/sheets)
+[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/sheets.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/sheets)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
+Sheets is a Laravel package to read & index content stored as text files. Markdown & front matter are supported out of the box, but you can parse & extract data from your files in whatever format you prefer.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Sheets can be added to any existing Laravel application and is a perfect fit for documentation sites & personal blogs.
+
+```md
+---
+title: Home
+---
+# Hello, world!
+
+Welcome to sheets!
+```
+
+```php
+class HomeController
+{
+    public function index(Sheets $sheets)
+    {
+        return view('page', [
+            $page => $sheets->get('home'),
+        ]);
+    }
+}
+```
+
+```blade
+@extends('layouts.app', [
+    'title' => $page->title,
+])
+
+@section('main')
+    {{ $page->content }}
+@endsection
+```
+
+### Features
+
+- Allows any document format (by default markdown files with front matter)
+- Stores your content wherever you want (uses Laravel's filesystem component)
+- Keeps multiple collections of content (e.g. posts, pages, etc.)
+- Casts your document contents to Eloquent-like classes with accessors
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require spatie/:package_name
+composer require spatie/sheets
 ```
 
 ## Usage
 
-``` php
+
+
+```php
 $skeleton = new Spatie\Skeleton();
 echo $skeleton->echoPhrase('Hello, Spatie!');
 ```
@@ -52,14 +92,14 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Sebastian De Deyne](https://github.com/sebastiandedeyne)
 - [All Contributors](../../contributors)
 
 ## Support us
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
+Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie).
 All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License
