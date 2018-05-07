@@ -76,14 +76,77 @@ You can install the package via composer:
 composer require spatie/sheets
 ```
 
+Laravel will auto-discover and register the `SheetsServiceProvider`, so no further setup is required.
+
+After installing, you can publish the `sheets.php` configuration file:
+
+```
+php artisan vendor:publish --provider="Spatie\Sheets\SheetsServiceProvider" --tag="config"
+```
+
 ## Usage
 
-
+You can use the package with a facade, helper function, or with dependency injection.
 
 ```php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+use Sheets;
+
+Sheets::all();
 ```
+
+```php
+sheets()->all();
+```
+
+```php
+use Spatie\Sheets\Sheets;
+
+class SheetsController
+{
+    public function index(Sheets $sheets)
+    {
+        return view('sheets', [
+            'sheets' => $sheets->all(),
+        ]);
+    }
+}
+```
+
+### Default collections
+
+You can call `get` or `all` on the `Sheets` instance without specifying a collection first to query the default collection.
+
+```
+// Return all sheets in the default collection
+$sheets->all();
+```
+
+You can specify a default collection in `sheets.config`. If no default collection is specified, the default collection will be the **first** collection registered in the `collections` array.
+
+```php
+return [
+    'default_collection' => null,
+
+    'collections' => [
+        'posts',
+    ],
+];
+```
+
+In the above example, the default collection will implicitly be set to `posts`.
+
+```php
+return [
+    'default_collection' => 'pages',
+
+    'collections' => [
+        'posts',
+        'pages',
+    ],
+];
+```
+
+Here the default collection is set to `pages`.
 
 ### Testing
 
