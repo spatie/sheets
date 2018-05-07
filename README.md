@@ -24,14 +24,14 @@ class SheetController
     public function index(Sheets $sheets)
     {
         return view('sheet', [
-            $sheet => $sheets->get('home'),
+            'sheet' => $sheets->get('home'),
         ]);
     }
 
     public function show(string $id, Sheets $sheets)
     {
         return view('sheet', [
-            $sheet => $sheets->get($id),
+            'sheet' => $sheets->get($id),
         ]);
     }
 }
