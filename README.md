@@ -64,7 +64,7 @@ composer require spatie/sheets
 
 Laravel will auto-discover and register the `SheetsServiceProvider`, so no further setup is required.
 
-After installing, you can publish the `sheets.php` configuration file:
+After installing, you can optionally publish the `sheets.php` configuration file:
 
 ```
 php artisan vendor:publish --provider="Spatie\Sheets\SheetsServiceProvider" --tag="config"
