@@ -367,7 +367,7 @@ You can call `get` or `all` on the `Sheets` instance without specifying a collec
 Sheets::all();
 ```
 
-You can specify a default collection in `sheets.config`. If no default collection is specified, the default collection will be the **first** collection registered in the `collections` array.
+You can specify a default collection in `sheets.config`. If no default collection is specified, the default collection will be the first collection registered in the `collections` array.
 
 Here the default collection will implicitly be set to `pages`:
 
