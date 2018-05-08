@@ -36,7 +36,7 @@ class ImplicitDefaultCollectionTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_excpetion_on_set_default_collection()
+    public function it_throws_exception_on_set_default_collection()
     {
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage("Can't set default collection `no_registered_collections` because it isn't registered.");
