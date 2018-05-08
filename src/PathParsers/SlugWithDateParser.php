@@ -9,11 +9,11 @@ class SlugWithDateParser implements PathParser
 {
     public function parse(string $path): array
     {
-        $parts = explode('.', $path);
+        [$date, $slug] = explode('.', $path);
 
         return [
-            'date' => Carbon::parse($parts[0]),
-            'slug' => $parts[1] ?? '',
+            'date' => Carbon::parse($date),
+            'slug' => $slug ?? '',
         ];
     }
 }

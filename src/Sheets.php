@@ -16,7 +16,7 @@ class Sheets implements Repository
     public function collection(string $name): Repository
     {
         if (! isset($this->collections[$name])) {
-            throw new RuntimeException("Collection \"{$name}\" doesn't exist");
+            throw new RuntimeException("Collection `{$name}` doesn't exist");
         }
 
         return $this->collections[$name];
@@ -39,7 +39,7 @@ class Sheets implements Repository
     public function setDefaultCollection(string $defaultCollection)
     {
         if (! isset($this->collections[$defaultCollection])) {
-            throw new RuntimeException("Can't set default collection \"{$defaultCollection}\" because it isn't registered.");
+            throw new RuntimeException("Can't set default collection `{$defaultCollection}` because it isn't registered.");
         }
 
         $this->defaultCollection = $defaultCollection;

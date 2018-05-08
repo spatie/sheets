@@ -10,19 +10,19 @@ use Spatie\Sheets\Sheet;
 
 class FilesystemRepository implements Repository
 {
-    /** @var \Illuminate\Contracts\Filesystem\Filesystem */
-    protected $filesystem;
-
     /** @var \Spatie\Sheets\Factory */
     protected $factory;
+
+    /** @var \Illuminate\Contracts\Filesystem\Filesystem */
+    protected $filesystem;
 
     /** @var string */
     protected $extension;
 
     public function __construct(Factory $factory, Filesystem $filesystem, string $extension = 'md')
     {
-        $this->filesystem = $filesystem;
         $this->factory = $factory;
+        $this->filesystem = $filesystem;
         $this->extension = $extension;
     }
 

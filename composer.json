@@ -1,6 +1,6 @@
 {
     "name": "spatie/sheets",
-    "description": ":package_description",
+    "description": "Store & retrieve your static content in plain text files",
     "keywords": [
         "spatie",
         "sheets"

@@ -64,11 +64,13 @@ composer require spatie/sheets
 
 Laravel will auto-discover and register the `SheetsServiceProvider`, so no further setup is required.
 
-After installing, you can publish the `sheets.php` configuration file:
+After installing, you must publish the `sheets.php` configuration file:
 
 ```
 php artisan vendor:publish --provider="Spatie\Sheets\SheetsServiceProvider" --tag="config"
 ```
+
+Finally you must [create your first collection](https://github.com/spatie/sheets#configuring-collections).
 
 ## Usage
 
@@ -169,11 +171,11 @@ echo $sheet->contents;
 // '<h1>Hello, world!</h1><p>Welcome to Sheets!</p>'
 ```
 
-You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll dive into that later.
+You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll [dive into that later](#sheet-class).
 
 ### Configuring collections
 
-Sheets is highly configurable if the default configuration doesn't cut it. You can configure each collection separately by using an associative array in `config/sheets.php`.
+Sheets is highly configurable. You can configure each collection separately by using an associative array in `config/sheets.php`.
 
 ```php
 // config/sheets.php
