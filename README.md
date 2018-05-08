@@ -48,7 +48,7 @@ class SheetController
 
 ### Features
 
-- Allows any document format (by default markdown files with front matter)
+- Allows any document format (by default Markdown files with front matter)
 - Stores your content wherever you want (uses Laravel's filesystem component)
 - Keeps multiple collections of content (e.g. posts, pages, etc.)
 - Casts your document contents to Eloquent-like classes with accessors
@@ -156,7 +156,7 @@ $repository->all();
 Sheets::collection('posts')->get('hello-world');
 ```
 
-A `Sheet` instance is very similar to an Eloquent model. It holds an array of attributes that are exposed as properties. By default it will contain the path as a `slug` field, all front matter data, and a `contents` field containing an html representation of the contained markdown.
+A `Sheet` instance is very similar to an Eloquent model. It holds an array of attributes that are exposed as properties. By default it will contain the path as a `slug` field, all front matter data, and a `contents` field containing an HTML representation of the contained Markdown.
 
 ```php
 $sheet = Sheets::collection('posts')->get('hello-world');
@@ -350,7 +350,7 @@ You can write your own path parsers by implementing the `Spatie\Sheets\PathParse
 
 Content parsers are similar to path parsers, but are in charge of parsing the file's contents.
 
-The default content parser is the `MarkdownWithFrontMatterParser`, which extracts front matter and transforms markdown to html.
+The default content parser is the `MarkdownWithFrontMatterParser`, which extracts front matter and transforms Markdown to HTML.
 
 ```php
 class MarkdownWithFrontMatterParser implements ContentParser
@@ -388,7 +388,7 @@ return [
 ];
 ```
 
-Above, we configured the path parser for `pages` to the `MarkdownParser`, which parses markdown files _without_ front matter.
+Above, we configured the path parser for `pages` to the `MarkdownParser`, which parses Markdown files _without_ front matter.
 
 You can write your own content parsers by implementing the `Spatie\Sheets\ContentParser` interface. Content parsers are instantiated through Laravel's container, so you can inject it's dependencies via the `__construct` method if desired.
 
