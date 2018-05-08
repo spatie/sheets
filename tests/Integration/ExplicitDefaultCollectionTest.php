@@ -33,7 +33,7 @@ class ExplicitDefaultCollectionTest extends TestCase
         ]);
 
         $app['config']->set('sheets', [
-            'default' => 'posts',
+            'default_collection' => 'posts',
 
             'collections' => [
                 'content' => [
