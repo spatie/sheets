@@ -6,9 +6,9 @@ return [
     'collections' => [
         // 'content' => [
         //     'disk' => null,
+        //     'sheet_class' => null,
         //     'path_parser' => null,
         //     'content_parser' => null,
-        //     'sheet_class' => null,
         // ],
     ],
 ];

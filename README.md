@@ -139,7 +139,7 @@ title: Hello, world!
 Welcome to Sheets!
 ```
 
-A repository has two public methods: `all()` and `get($identifier)`. You can get a repository instance through the `collection` method on `Sheets`.
+A repository has two public methods: `all()` and `get($slug)`. You can get a repository instance through the `collection` method on `Sheets`.
 
 `Repository::all()` will return an instance of `Illuminate\Support\Collection` containing `Spatie\Sheets\Sheet` instances.
 
@@ -147,7 +147,7 @@ A repository has two public methods: `all()` and `get($identifier)`. You can get
 Sheets::collection('posts')->all();
 ```
 
-`Repository::get($identifier)` returns a single `Sheet` instance or `null`. By default, the identifier is the `slug` field (which is the filename without the extension). Read the [custom identifiers](#custom-identifiers) section if you'd prefer a different way to query your Sheets reposisitory.
+`Repository::get($slug)` returns a single `Sheet` instance or `null`. A sheet's `slug` field contains its filename without an extension.
 
 ```php
 Sheets::collection('posts')->get('hello-world');
@@ -155,7 +155,7 @@ Sheets::collection('posts')->get('hello-world');
 
 A `Sheet` instance is very similar to an Eloquent model. It holds an array of attributes that are available as properties. By default it will contain the path as a `slug` field, all front matter data, and a `contents` field containing an html representation of the contained markdown.
 
-```
+```php
 $sheet = Sheets::collection('posts')->get('hello-world');
 
 echo $sheet->slug;
@@ -170,50 +170,207 @@ echo $sheet->contents;
 
 You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll dive into that later.
 
-### Router macro
+### Configuring collections
 
-You can use our router macro to get started without creating a controller.
+When the default configuration doesn't cut it, Sheets is highly configurable. You can pass options to a collection by using an associative array in `config/sheets.php`.
 
 ```php
-Route::sheets('/', [
-    'sheet' => 'home',
-    'view' => 'sheet',
-]);
-
-Route::sheets('/{sheet}', 'pages', [
-    'view' => 'sheet',
-]);
+// config/sheets.php
+return [
+    'collections' => [
+        'pages' => [
+            'disk' => null, // Defaults to collection name
+            'sheet_class' => Spatie\Sheets\Sheet::class,
+            'path_parser' => Spatie\Sheets\PathParsers\SlugParser::class,
+            'content_parser' =>
+                Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser::class
+        ],
+    ],
+];
 ```
 
-### Advanced usage
+Above is what a collection's default configuration looks like—what we've been working with the whole time. When configuring your own collection, every key is optional, if it doesn't exist, Sheets will use one of these values.
 
-### Custom `Sheet` implementations
+#### Disk
 
-...
+The disk name where your content is stored. Disks are configured in `config/filesystems.php`. By default, Sheets will look for a disk with the same name as the collection.
 
-### Custom identifiers
+```php
+// config/sheets.php
+return [
+    'collections' => [
+        'pages' => [
+            'disk' => null, // Uses the 'pages' disk
+        ],
+    ],
+];
+```
 
-...
+```php
+// config/sheets.php
+return [
+    'collections' => [
+        'pages' => [
+            'disk' => 'sheets', // Uses the 'sheets' disk
+        ],
+    ],
+];
+```
+
+#### Sheet class
+
+Your content will be casted to `Sheet` instances. The `Sheet` class is similar to a trimmed-down Eloquent model: it holds a set of attributes that are available as properties.
+
+```php
+$sheet = Sheets::collection('page')->get('hello-world');
+
+echo $sheet->slug;
+// 'hello-world'
+```
+
+You can extend the `Sheet` class to add accessors (just like [in Eloquent](https://laravel.com/docs/5.6/eloquent-mutators#accessors-and-mutators)) and custom behavior.
+
+```php
+namespace App;
+
+use Spatie\Sheets\Sheet;
+
+class Page extends Sheet
+{
+    public function getUrlAttribute(): string
+    {
+        return url($this->slug);
+    }
+}
+```
+
+```php
+// config/sheets.php
+return [
+    'collections' => [
+        'pages' => [
+            'sheet_class' => App\Page::class,
+        ],
+    ],
+];
+```
+
+```php
+$sheet = Sheets::collection('pages')->get('hello-world');
+
+echo $sheet->url;
+// 'https://example.app/hello-world'
+```
+
+#### Path parser
+
+Sheets uses the file path to determine part of the `Sheet` attributes. A path parser is able to parse the path to a set of attributes.
+
+The default path parser is the `SlugParser`, which simply adds a `slug` attribute based on the file name.
+
+```php
+namespace Spatie\Sheets\PathParsers;
+
+use Spatie\Sheets\PathParser;
+
+class SlugParser implements PathParser
+{
+    public function parse(string $path): array
+    {
+        return ['slug' => explode('.', $path)[0]];
+    }
+}
+```
+
+You can customize the collection's path parser with the `path_parser` option.
+
+```php
+// config/sheets.php
+return [
+    'collections' => [
+        'posts' => [
+            'path_parser' => Spatie\Sheets\PathParsers\SlugWithDateParser::class,
+        ],
+    ],
+];
+```
+
+Above, we configured the path parser for `posts` to the `SlugWithDateParser`, which allows you to prefix your filenames with a date. This is useful for time-sensitive content like blogs.
+
+```
+posts/
+  2018-05-05.my-first-post.md
+```
+
+The above sheet will have two attributes: a `date` containing an `Illuminate\Support\Carbon` instance, and a `slug` `my-first-post`.
+
+You can write your own path parsers by implementing the `Spatie\Sheets\PathParser` interface. Path parsers are instantiated through Laravel's container, so you can inject it's dependencies via the `__construct` method if desired.
+
+#### Content Parser
+
+Content parsers are similar to path parsers, but are in charge of parsing the file's contents.
+
+The default content parser is the `MarkdownWithFrontMatterParser`, which extracts front matter and transforms markdown to html.
+
+```php
+class MarkdownWithFrontMatterParser implements ContentParser
+{
+    /** @var \League\CommonMark\CommonMarkConverter */
+    protected $commonMarkConverter;
+
+    public function __construct(CommonMarkConverter $commonMarkConverter)
+    {
+        $this->commonMarkConverter = $commonMarkConverter;
+    }
+
+    public function parse(string $contents): array
+    {
+        $document = YamlFrontMatter::parse($contents);
+
+        return array_merge(
+            $document->matter(),
+            ['contents' => $this->commonMarkConverter->convertToHtml($document->body())]
+        );
+    }
+}
+```
+
+You can customize the collection's content parser with the `content_parser` option.
+
+```php
+// config/sheets.php
+return [
+    'collections' => [
+        'pages' => [
+            'content_parser' => Spatie\Sheets\ContentParsers\MarkdownParser::class,
+        ],
+    ],
+];
+```
+
+Above, we configured the path parser for `pages` to the `MarkdownParser`, which parses markdown files _without_ front matter.
+
+You can write your own content parsers by implementing the `Spatie\Sheets\ContentParser` interface. Content parsers are instantiated through Laravel's container, so you can inject it's dependencies via the `__construct` method if desired.
 
 #### Default collections
 
 You can call `get` or `all` on the `Sheets` instance without specifying a collection first to query the default collection.
 
-```
+```php
 // Return all sheets in the default collection
-$sheets->all();
+Sheets::all();
 ```
 
 You can specify a default collection in `sheets.config`. If no default collection is specified, the default collection will be the **first** collection registered in the `collections` array.
 
-Here the default collection will implicitly be set to `posts`:
+Here the default collection will implicitly be set to `pages`:
 
 ```php
 return [
     'default_collection' => null,
 
     'collections' => [
-        'posts',
+        'pages',
     ],
 ];
 ```
@@ -229,6 +386,21 @@ return [
         'pages',
     ],
 ];
+```
+
+### Router macro
+
+You can use our router macro to get started without creating a controller.
+
+```php
+Route::sheets('/', [
+    'sheet' => 'home',
+    'view' => 'sheet',
+]);
+
+Route::sheets('/{sheet}', 'pages', [
+    'view' => 'sheet',
+]);
 ```
 
 ### Testing
