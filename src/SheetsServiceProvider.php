@@ -69,8 +69,8 @@ class SheetsServiceProvider extends ServiceProvider
                 $sheets->registerCollection($name, $repository);
             }
 
-            if (config('sheets.default')) {
-                $sheets->setDefaultCollection(config('sheets.default'));
+            if (config('sheets.default_collection')) {
+                $sheets->setDefaultCollection(config('sheets.default_collection'));
             }
 
             return $sheets;

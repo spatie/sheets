@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default' => null,
+    'default_collection' => null,
 
     'collections' => [
 
