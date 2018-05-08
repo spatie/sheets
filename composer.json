@@ -32,7 +32,10 @@
     "autoload": {
         "psr-4": {
             "Spatie\\Sheets\\": "src"
-        }
+        },
+        "files": [
+            "srcs/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -42,7 +45,6 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test-coverage": "phpunit --coverage-html coverage"
-
     },
     "config": {
         "sort-packages": true
@@ -53,7 +55,7 @@
                 "Spatie\\Sheets\\SheetsServiceProvider"
             ],
             "aliases": {
-                "Sheets": "Spatie\\Sheets\\SheetsFacade"
+                "Sheets": "Spatie\\Sheets\\Facades\\Sheets"
             }
         }
     }
