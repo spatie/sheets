@@ -2,12 +2,13 @@
 
 namespace Spatie\Sheets;
 
+use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
-use Illuminate\Filesystem\FilesystemManager;
+use Spatie\Sheets\Repositories\FilesystemRepository;
 
 class SheetsServiceProvider extends ServiceProvider
 {
@@ -53,14 +54,19 @@ class SheetsServiceProvider extends ServiceProvider
 
                 $config = $this->mergeCollectionConfigWithDefaults($name, $config);
 
-                $sheets->registerCollection(
-                    $name,
+                $factory = new Factory(
                     $this->app->make($config['path_parser']),
                     $this->app->make($config['content_parser']),
-                    $config['sheet_class'],
+                    $config['sheet_class']
+                );
+
+                $repository = new FilesystemRepository(
+                    $factory,
                     $this->app->make(FilesystemManager::class)->disk($config['disk']),
                     $config['extension']
                 );
+
+                $sheets->registerCollection($name, $repository);
             }
 
             if (config('sheets.default')) {

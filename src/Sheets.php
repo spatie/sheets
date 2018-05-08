@@ -2,13 +2,8 @@
 
 namespace Spatie\Sheets;
 
-use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\Collection;
 use RuntimeException;
-use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
-use Spatie\Sheets\PathParsers\SlugParser;
-use Spatie\Sheets\Repositories\FilesystemRepository;
-use Illuminate\Contracts\Filesystem\Filesystem;
 
 class Sheets implements Repository
 {
@@ -27,18 +22,7 @@ class Sheets implements Repository
         return $this->collections[$name];
     }
 
-    public function registerCollection(
-        string $name,
-        PathParser $pathParser,
-        ContentParser $contentParser,
-        string $sheetClass,
-        Filesystem $filesystem,
-        string $extension
-    ) {
-        $factory = new Factory($pathParser, $contentParser, $sheetClass);
-
-        $repository = new FilesystemRepository($factory, $filesystem, $extension);
-
+    public function registerCollection(string $name, Repository $repository) {
         $this->collections[$name] = $repository;
     }
 
