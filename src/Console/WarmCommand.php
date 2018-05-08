@@ -2,6 +2,7 @@
 
 namespace Spatie\Sheets\Console;
 
+use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Sheets;
 use Illuminate\Console\Command;
 
@@ -38,7 +39,7 @@ class WarmCommand extends Command
 
     protected function warm(string $collectionName)
     {
-        $this->sheets->collection($collectionName)->all()->each(function ($sheet) use ($collectionName) {
+        $this->sheets->collection($collectionName)->all()->each(function (Sheet $sheet) use ($collectionName) {
             $this->sheets->collection($collectionName)->get($sheet->slug);
         });
 
