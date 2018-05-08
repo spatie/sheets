@@ -23,6 +23,8 @@ class WarmCommand extends Command
 
     public function handle()
     {
+        $this->info('Start warming sheets...');
+
         if ($this->option('collection')) {
             $this->warm($this->option('collection'));
 
