@@ -101,7 +101,7 @@ class SheetsController
 
 ### Creating your first collection
 
-A collection maps to a folder in your filesystem of choice. Without configuration name, Sheets will look for a disk configured in `config/filesystems.php` with the same name as the collection.
+A collection maps to a folder in your filesystem of choice. Sheets will look for a disk configured in `config/filesystems.php` with the same name as the collection—or you can [configure the disk yourself](#disk).
 
 ```php
 // config/filesystems.php
