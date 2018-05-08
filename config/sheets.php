@@ -4,11 +4,14 @@ return [
     'default' => null,
 
     'collections' => [
-        // 'content' => [
-        //     'disk' => null,
-        //     'sheet_class' => null,
-        //     'path_parser' => null,
-        //     'content_parser' => null,
-        // ],
+
+        /* An example collection. All keys are optional.
+
+        'posts' => [
+            'disk' => 'posts',
+            'sheet_class' => App\Post::class,
+            'path_parser' => Spatie\Sheets\PathParsers\SlugWithDateParser::class,
+            'content_parser' => Spatie\Sheets\ContentParsers\MarkdownParser::class,
+        ], */
     ],
 ];

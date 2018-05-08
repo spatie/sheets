@@ -101,7 +101,7 @@ class SheetsController
 
 ### Creating your first collection
 
-A collection maps to a folder in your filesystem of choice. Sheets will look for a disk configured in `config/filesystems.php` with the same name as the collection—or you can [configure the disk yourself](#disk).
+A collection maps to a folder in your filesystem of choice. Sheets will look for a disk configured in `config/filesystems.php` with the same name as the collection—or you can [configure the disk name yourself](#disk).
 
 ```php
 // config/filesystems.php
@@ -141,19 +141,21 @@ Welcome to Sheets!
 
 A repository has two public methods: `all()` and `get($slug)`. You can get a repository instance through the `collection` method on `Sheets`.
 
-`Repository::all()` will return an instance of `Illuminate\Support\Collection` containing `Spatie\Sheets\Sheet` instances.
+`Repository::all()` will return an `Illuminate\Support\Collection` containing `Spatie\Sheets\Sheet` instances.
 
 ```php
-Sheets::collection('posts')->all();
+$repository = Sheets::collection('posts');
+
+$repository->all();
 ```
 
-`Repository::get($slug)` returns a single `Sheet` instance or `null`. A sheet's `slug` field contains its filename without an extension.
+`Repository::get($slug)` returns a single `Sheet` instance or `null` if nothing was found. A sheet's `slug` field contains its filename without an extension.
 
 ```php
 Sheets::collection('posts')->get('hello-world');
 ```
 
-A `Sheet` instance is very similar to an Eloquent model. It holds an array of attributes that are available as properties. By default it will contain the path as a `slug` field, all front matter data, and a `contents` field containing an html representation of the contained markdown.
+A `Sheet` instance is very similar to an Eloquent model. It holds an array of attributes that are exposed as properties. By default it will contain the path as a `slug` field, all front matter data, and a `contents` field containing an html representation of the contained markdown.
 
 ```php
 $sheet = Sheets::collection('posts')->get('hello-world');
@@ -172,7 +174,7 @@ You can create your own `Sheet` implementations with accessors just like Eloquen
 
 ### Configuring collections
 
-When the default configuration doesn't cut it, Sheets is highly configurable. You can pass options to a collection by using an associative array in `config/sheets.php`.
+Sheets is highly configurable if the default configuration doesn't cut it. You can configure each collection separately by using an associative array in `config/sheets.php`.
 
 ```php
 // config/sheets.php
@@ -189,7 +191,7 @@ return [
 ];
 ```
 
-Above is what a collection's default configuration looks like—what we've been working with the whole time. When configuring your own collection, every key is optional, if it doesn't exist, Sheets will use one of these values.
+Above is what a collection's default configuration looks like (the configuration we've been working until now). When configuring a collection, every key is optional, if it doesn't exist, Sheets will use one of these values.
 
 #### Disk
 
