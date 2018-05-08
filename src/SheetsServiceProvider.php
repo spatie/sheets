@@ -2,12 +2,14 @@
 
 namespace Spatie\Sheets;
 
+use Illuminate\Cache\CacheManager;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
+use Spatie\Sheets\Repositories\CacheRepository;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 
 class SheetsServiceProvider extends ServiceProvider
@@ -66,6 +68,14 @@ class SheetsServiceProvider extends ServiceProvider
                     $config['extension']
                 );
 
+                if ($config['cache'] !== false) {
+                    $repository = new CacheRepository(
+                        $name,
+                        $repository,
+                        $this->app->make(CacheManager::class)->store($config['cache'])
+                    );
+                }
+
                 $sheets->registerCollection($name, $repository);
             }
 
@@ -82,10 +92,11 @@ class SheetsServiceProvider extends ServiceProvider
     protected function mergeCollectionConfigWithDefaults(string $name, array $config): array
     {
         $defaults = [
+            'disk' => $name,
+            'cache' => config('cache.default'),
+            'sheet_class' => Sheet::class,
             'path_parser' => SlugParser::class,
             'content_parser' => MarkdownWithFrontMatterParser::class,
-            'sheet_class' => Sheet::class,
-            'disk' => $name,
             'extension' => 'md',
         ];
 
