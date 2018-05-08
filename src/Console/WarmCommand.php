@@ -24,7 +24,7 @@ class WarmCommand extends Command
 
     public function handle()
     {
-        $this->info('Start warming sheets...');
+        $this->info('Start warming cache...');
 
         if ($this->option('collection')) {
             $this->warm($this->option('collection'));
@@ -43,6 +43,6 @@ class WarmCommand extends Command
             $this->sheets->collection($collectionName)->get($sheet->slug);
         });
 
-        $this->info("Warmed up {$this->option('collection')}");
+        $this->info("Warmed up cache for {$this->option('collection')}");
     }
 }
