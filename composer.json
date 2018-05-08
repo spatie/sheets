@@ -26,7 +26,7 @@
     "require-dev": {
         "illuminate/filesystem": "~5.6.0",
         "larapack/dd": "^1.0",
-        "league/flysystem": "^1.0",
+        "league/flysystem": "^1.0.8",
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
