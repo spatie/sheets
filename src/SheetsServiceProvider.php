@@ -6,6 +6,7 @@ use Illuminate\Cache\CacheManager;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
+use Spatie\Sheets\Console\WarmCommand;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
@@ -23,6 +24,10 @@ class SheetsServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/sheets.php' => config_path('sheets.php'),
             ], 'config');
+
+            $this->commands([
+                WarmCommand::class,
+            ]);
         }
     }
 
