@@ -171,7 +171,7 @@ echo $sheet->contents;
 // '<h1>Hello, world!</h1><p>Welcome to Sheets!</p>'
 ```
 
-You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll dive into that later.
+You can create your own `Sheet` implementations with accessors just like Eloquent, but we'll [dive into that later](#sheet-class).
 
 ### Configuring collections
 
