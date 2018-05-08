@@ -175,7 +175,7 @@ You can create your own `Sheet` implementations with accessors just like Eloquen
 
 ### Configuring collections
 
-Sheets is highly configurable if the default configuration doesn't cut it. You can configure each collection separately by using an associative array in `config/sheets.php`.
+Sheets is highly configurable. You can configure each collection separately by using an associative array in `config/sheets.php`.
 
 ```php
 // config/sheets.php
