@@ -8,6 +8,6 @@ class SlugParser implements PathParser
 {
     public function parse(string $path): array
     {
-        return ['slug' => explode('.', $path)[0]];
+        return ['slug' => pathinfo($path, PATHINFO_FILENAME)];
     }
 }
