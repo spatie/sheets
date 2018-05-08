@@ -52,7 +52,6 @@ class SheetController
 - Stores your content wherever you want (uses Laravel's filesystem component)
 - Keeps multiple collections of content (e.g. posts, pages, etc.)
 - Casts your document contents to Eloquent-like classes with accessors
-- Exposes a router macro to map sheets to url's and views without needing a controller
 - Convention over configuration, near-zero setup if you use the defaults
 
 ## Installation
@@ -429,21 +428,6 @@ return [
         'pages',
     ],
 ];
-```
-
-### Router macro
-
-You can use our router macro to get started without creating a controller.
-
-```php
-Route::sheets('/', [
-    'sheet' => 'home',
-    'view' => 'sheet',
-]);
-
-Route::sheets('/{sheet}', 'pages', [
-    'view' => 'sheet',
-]);
 ```
 
 ### Testing
