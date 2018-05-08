@@ -58,7 +58,8 @@ class SheetsServiceProvider extends ServiceProvider
                     $this->app->make($config['path_parser']),
                     $this->app->make($config['content_parser']),
                     $config['sheet_class'],
-                    $this->app->make(FilesystemManager::class)->disk($config['disk'])
+                    $this->app->make(FilesystemManager::class)->disk($config['disk']),
+                    $config['extension']
                 );
             }
 
@@ -79,6 +80,7 @@ class SheetsServiceProvider extends ServiceProvider
             'content_parser' => MarkdownWithFrontMatterParser::class,
             'sheet_class' => Sheet::class,
             'disk' => $name,
+            'extension' => 'md',
         ];
 
         return array_merge($defaults, $config);

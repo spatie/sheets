@@ -184,8 +184,8 @@ return [
             'disk' => null, // Defaults to collection name
             'sheet_class' => Spatie\Sheets\Sheet::class,
             'path_parser' => Spatie\Sheets\PathParsers\SlugParser::class,
-            'content_parser' =>
-                Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser::class
+            'content_parser' => Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser::class,
+            'extension' => 'md',
         ],
     ],
 ];
@@ -353,6 +353,10 @@ return [
 Above, we configured the path parser for `pages` to the `MarkdownParser`, which parses markdown files _without_ front matter.
 
 You can write your own content parsers by implementing the `Spatie\Sheets\ContentParser` interface. Content parsers are instantiated through Laravel's container, so you can inject it's dependencies via the `__construct` method if desired.
+
+#### Extension
+
+The file extension used in a collection. Defaults to `md`.
 
 #### Default collections
 

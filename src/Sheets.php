@@ -32,11 +32,12 @@ class Sheets implements Repository
         PathParser $pathParser,
         ContentParser $contentParser,
         string $sheetClass,
-        Filesystem $filesystem
+        Filesystem $filesystem,
+        string $extension
     ) {
         $factory = new Factory($pathParser, $contentParser, $sheetClass);
 
-        $repository = new FilesystemRepository($factory, $filesystem);
+        $repository = new FilesystemRepository($factory, $filesystem, $extension);
 
         $this->collections[$name] = $repository;
     }
