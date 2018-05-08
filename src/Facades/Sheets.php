@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Sheets;
+namespace Spatie\Sheets\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
