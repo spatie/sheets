@@ -34,7 +34,7 @@
             "Spatie\\Sheets\\": "src"
         },
         "files": [
-            "srcs/helpers.php"
+            "src/helpers.php"
         ]
     },
     "autoload-dev": {
