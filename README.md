@@ -109,16 +109,16 @@ A collection maps to a folder in your filesystem of choice. Sheets will look for
 return [
     'disks' => [
         // ...
-        'pages' => [
+        'posts' => [
             'driver' => 'local',
-            'root' => base_path('pages'),
+            'root' => base_path('posts'),
         ],
     ],
 ];
 
 // config/sheets.php
 return [
-    'collections' => ['pages'],
+    'collections' => ['posts'],
 ];
 ```
 
