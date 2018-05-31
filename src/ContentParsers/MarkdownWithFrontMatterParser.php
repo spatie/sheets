@@ -2,6 +2,7 @@
 
 namespace Spatie\Sheets\ContentParsers;
 
+use Illuminate\Support\HtmlString;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParser;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -20,9 +21,11 @@ class MarkdownWithFrontMatterParser implements ContentParser
     {
         $document = YamlFrontMatter::parse($contents);
 
+        $htmlContents = $this->commonMarkConverter->convertToHtml($document->body());
+
         return array_merge(
             $document->matter(),
-            ['contents' => $this->commonMarkConverter->convertToHtml($document->body())]
+            ['contents' => new HtmlString($htmlContents)]
         );
     }
 }

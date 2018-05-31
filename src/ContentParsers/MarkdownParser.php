@@ -2,6 +2,7 @@
 
 namespace Spatie\Sheets\ContentParsers;
 
+use Illuminate\Support\HtmlString;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParser;
 
@@ -17,8 +18,10 @@ class MarkdownParser implements ContentParser
 
     public function parse(string $contents): array
     {
+        $htmlContents = $this->commonMarkConverter->convertToHtml($contents);
+
         return [
-            'contents' => $this->commonMarkConverter->convertToHtml($contents),
+            'contents' => new HtmlString($htmlContents),
         ];
     }
 }
