@@ -220,43 +220,6 @@ return [
 ];
 ```
 
-#### Cache
-
-By default, all sheets will be stored in your application's cache. If you wish to specify a different cache store, you can do so with the `cache` option. If you want to disable caching all together, set `cache` to `false`.
-
-```php
-// config/sheets.php
-return [
-    'collections' => [
-        'pages' => [
-            'cache' => null, // Uses your application's default cache store
-        ],
-    ],
-];
-```
-
-```php
-// config/sheets.php
-return [
-    'collections' => [
-        'pages' => [
-            'cache' => 'sheets', // Uses the 'sheets' cache store
-        ],
-    ],
-];
-```
-
-```php
-// config/sheets.php
-return [
-    'collections' => [
-        'pages' => [
-            'cache' => false, // Disables caching entirely
-        ],
-    ],
-];
-```
-
 #### Sheet class
 
 Your content will be casted to `Sheet` instances. The `Sheet` class is similar to a trimmed-down Eloquent model: it holds a set of attributes that are available as properties.
