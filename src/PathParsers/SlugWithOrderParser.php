@@ -8,11 +8,15 @@ class SlugWithOrderParser implements PathParser
 {
     public function parse(string $path): array
     {
-        [$order, $slug] = explode('.', $path);
+        $parts = explode('/', $path);
+
+        $filename = array_pop($parts);
+
+        [$order, $slug] = explode('.', $filename);
 
         return [
-            'order' => (int) $order,
-            'slug' => $slug ?? '',
+            'order' => $order,
+            'slug' => implode('/', array_merge($parts, [$slug])),
         ];
     }
 }
