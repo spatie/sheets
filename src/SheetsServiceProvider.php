@@ -21,10 +21,6 @@ class SheetsServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../config/sheets.php' => config_path('sheets.php'),
             ], 'config');
-
-            $this->commands([
-                WarmCommand::class,
-            ]);
         }
     }
 
