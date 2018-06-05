@@ -25,6 +25,11 @@ class Sheet
         return $value;
     }
 
+    protected function __set(string $key, $value)
+    {
+        $this->attributes[$key] = $value;
+    }
+
     public function __isset(string $key)
     {
         return ! is_null($this->$key);

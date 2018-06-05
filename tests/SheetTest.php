@@ -40,6 +40,19 @@ class SheetTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_a_specific_attribute()
+    {
+        $sheet = new Sheet();
+
+        $sheet->foo = 'bar';
+
+        $reflection = (new ReflectionClass($sheet))->getProperty('attributes');
+        $reflection->setAccessible(true);
+
+        $this->assertEquals(['foo' => 'bar'], $reflection->getValue($sheet));
+    }
+
+    /** @test */
     public function it_can_be_extended_with_accessor()
     {
         $child = new class extends Sheet {
