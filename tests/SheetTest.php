@@ -2,6 +2,7 @@
 
 namespace Spatie\Sheets\Tests;
 
+use ArrayAccess;
 use ReflectionClass;
 use Spatie\Sheets\Sheet;
 use PHPUnit\Framework\TestCase;
@@ -66,5 +67,21 @@ class SheetTest extends TestCase
 
         $this->assertNotEquals('bar', $sheet->foo);
         $this->assertEquals('baz', $sheet->foo);
+    }
+
+    /** @test */
+    public function it_implements_array_access()
+    {
+        $sheet = new Sheet(['foo' => 'bar']);
+
+        $this->assertInstanceOf(ArrayAccess::class, $sheet);
+        $this->assertEquals('bar', $sheet['foo']);
+        $this->assertNull($sheet['unknown']);
+
+        unset($sheet['foo']);
+        $this->assertNull($sheet['foo']);
+
+        $sheet['foo'] = 'baz';
+        $this->assertEquals('baz', $sheet['foo']);
     }
 }

@@ -58,7 +58,7 @@ class FilesystemRepositoryTest extends TestCase
         $sheet->attribute = 'attribute_name';
         unset($sheet->attribute);
 
-        // $this->assertFalse(isset($sheet->attribute));
+        $this->assertFalse(isset($sheet->attribute));
     }
 
     /** @test */
