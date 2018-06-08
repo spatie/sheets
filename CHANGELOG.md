@@ -2,9 +2,11 @@
 
 All notable changes to `sheets` will be documented in this file
 
-## 1.1.0 - 2018-06-05
+## 1.2.0 - 2018-06-08
+- Implement `Arrayable`, `Jsonable` & `JsonSerializable` on the `Sheet` class
 
-- Implement `ArrayAccess` on `Sheet` class
+## 1.1.0 - 2018-06-05
+- Implement `ArrayAccess` on the `Sheet` class
 
 ## 1.0.0 - 2018-05-31
 - First release
