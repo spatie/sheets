@@ -395,6 +395,50 @@ return [
 ];
 ```
 
+### Route model binding
+
+You can register custom route resolution logic to immediately inject `Sheet` instances in your controller actions.
+
+```php
+// app/Providers/RouteServiceProvider.php
+
+public function boot()
+{
+    parent::boot();
+
+    Route::bind('sheet', function ($path) {
+        return $this->app->make(Spatie\Sheets\Sheets::class)
+            ->get($path) ?? abort(404);
+    });
+}
+```
+
+Now the router will resolve any `sheet` parameter to a `Sheet` object.
+
+```php
+Route::get('/{sheet}', 'SheetsController@show');
+
+class SheetsController
+{
+    public function show(Sheet $sheet)
+    {
+        return view('sheet', ['sheet' => $sheet]);
+    }
+}
+```
+
+It might be useful to register specific bindings for other collections.
+
+```php
+Route::bind('post', function ($path) {
+    return $this->app->make(Spatie\Sheets\Sheets::class)
+        ->collection('posts')
+        ->get($path) ?? abort(404);
+});
+```
+
+The Laravel docs have an entire section on [Route Model Binding](https://laravel.com/docs/5.6/routing#route-model-binding).
+
 ### Testing
 
 ``` bash
