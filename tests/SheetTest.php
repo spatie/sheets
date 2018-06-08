@@ -4,8 +4,11 @@ namespace Spatie\Sheets\Tests;
 
 use ArrayAccess;
 use ReflectionClass;
+use JsonSerializable;
 use Spatie\Sheets\Sheet;
 use PHPUnit\Framework\TestCase;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
 
 class SheetTest extends TestCase
 {
@@ -28,7 +31,7 @@ class SheetTest extends TestCase
     public function it_can_get_a_specific_attribute()
     {
         $sheet = new Sheet(['foo' => 'bar']);
-        
+
         $this->assertEquals('bar', $sheet->foo);
     }
 
@@ -36,7 +39,7 @@ class SheetTest extends TestCase
     public function it_can_get_null_for_a_non_existing_attribute()
     {
         $sheet = new Sheet();
-        
+
         $this->assertNull($sheet->unknown);
     }
 
@@ -83,5 +86,41 @@ class SheetTest extends TestCase
 
         $sheet['foo'] = 'baz';
         $this->assertEquals('baz', $sheet['foo']);
+    }
+
+    /** @test */
+    public function it_can_be_transformed_to_an_array()
+    {
+        $sheet = new Sheet(['foo' => 'bar']);
+
+        $this->assertInstanceOf(Arrayable::class, $sheet);
+        $this->assertEquals(['foo' => 'bar'], $sheet->toArray());
+    }
+
+    /** @test */
+    public function it_can_be_transformed_to_json()
+    {
+        $sheet = new Sheet(['foo' => 'bar']);
+
+        $this->assertInstanceOf(Jsonable::class, $sheet);
+        $this->assertEquals('{"foo":"bar"}', $sheet->toJson());
+    }
+
+    /** @test */
+    public function it_is_json_serializable()
+    {
+        $sheet = new Sheet(['foo' => 'bar']);
+
+        $this->assertInstanceOf(JsonSerializable::class, $sheet);
+        $this->assertEquals('{"foo":"bar"}', json_encode($sheet));
+    }
+
+    /** @test */
+    public function it_serialized_to_json_when_casted_to_a_string()
+    {
+        $sheet = new Sheet(['foo' => 'bar']);
+
+        $this->assertInstanceOf(Jsonable::class, $sheet);
+        $this->assertEquals('{"foo":"bar"}', (string) $sheet);
     }
 }

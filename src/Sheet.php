@@ -3,8 +3,12 @@
 namespace Spatie\Sheets;
 
 use ArrayAccess;
+use JsonSerializable;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\JsonEncodingException;
 
-class Sheet implements ArrayAccess
+class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 {
     /** @var array */
     protected $attributes;
@@ -34,6 +38,11 @@ class Sheet implements ArrayAccess
         unset($this->attributes[$key]);
     }
 
+    public function __toString(): string
+    {
+        return $this->toJson();
+    }
+
     public function offsetExists($key)
     {
         return !is_null($this->getAttribute($key));
@@ -52,6 +61,29 @@ class Sheet implements ArrayAccess
     public function offsetUnset($key)
     {
         unset($this->attributes[$key]);
+    }
+
+    public function toArray(): array
+    {
+        return $this->attributes;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->toArray();
+    }
+
+    public function toJson($options = 0): string
+    {
+        $json = json_encode($this->jsonSerialize(), $options);
+
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new JsonEncodingException(
+                'Error encoding sheet ['.get_class($this).'] to JSON: '.$message
+            );
+        }
+
+        return $json;
     }
 
     protected function getAttribute(string $key)

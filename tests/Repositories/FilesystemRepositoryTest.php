@@ -31,37 +31,6 @@ class FilesystemRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_a_attribute_in_sheet()
-    {
-        $filesystemRepository = new FilesystemRepository(
-            $this->createFactory(),
-            $this->createFilesystem()
-        );
-
-        $sheet = $filesystemRepository->get('hello-world');
-
-        $sheet->attribute = 'attribute_name';
-
-        $this->assertTrue(isset($sheet->attribute));
-    }
-
-    /** @test */
-    public function it_can_unset_a_attribute_in_sheet()
-    {
-        $filesystemRepository = new FilesystemRepository(
-            $this->createFactory(),
-            $this->createFilesystem()
-        );
-
-        $sheet = $filesystemRepository->get('hello-world');
-
-        $sheet->attribute = 'attribute_name';
-        unset($sheet->attribute);
-
-        $this->assertFalse(isset($sheet->attribute));
-    }
-
-    /** @test */
     public function it_can_get_all_sheets()
     {
         $filesystemRepository = new FilesystemRepository(
