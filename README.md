@@ -439,6 +439,15 @@ Route::bind('post', function ($path) {
 
 The Laravel docs have an entire section on [Route Model Binding](https://laravel.com/docs/5.6/routing#route-model-binding).
 
+### Use subdirectories to organize your sheets
+
+When you want to organize your sheets using (sub)directories, you need to define the route parameter to accept all characters. This way the complete relative path for your sheets will be send to the controller.
+
+```php
+Route::get('/', 'SheetsController@index')->where('sheet', '(.*)');
+Route::get('{sheet}', 'SheetsController@show')->where('sheet', '(.*)');
+```
+
 ### Testing
 
 ``` bash
