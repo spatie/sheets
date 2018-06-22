@@ -42,7 +42,7 @@ class SheetController
 ])
 
 @section('main')
-    {{ $sheet->content }}
+    {{ $sheet->contents }}
 @endsection
 ```
 
