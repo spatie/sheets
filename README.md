@@ -430,8 +430,10 @@ class SheetsController
 It might be useful to register specific bindings for other collections.
 
 ```php
+use Spatie\Sheets\Sheets;
+
 Route::bind('post', function ($path) {
-    return $this->app->make(Spatie\Sheets\Sheets::class)
+    return $this->app->make(Sheets::class)
         ->collection('posts')
         ->get($path) ?? abort(404);
 });
