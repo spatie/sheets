@@ -407,8 +407,13 @@ public function boot()
     parent::boot();
 
     Route::bind('sheet', function ($path) {
-        return $this->app->make(Spatie\Sheets\Sheets::class)
-            ->get($path) ?? abort(404);
+        $sheet = $this->app->make(Spatie\Sheets\Sheets::class)->get($path);
+
+        if (!$sheet) {
+            abort(404);
+        }
+
+        return $sheet;
     });
 }
 ```
