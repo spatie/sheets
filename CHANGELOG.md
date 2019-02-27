@@ -2,6 +2,9 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.2.3 - 2018-02-27
+- Add support for Laravel 5.7
+
 ## 1.2.2 - 2018-11-28
 - Allow latest `league/commonmark` version
 
