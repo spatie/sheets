@@ -2,11 +2,12 @@
 
 namespace Spatie\Sheets\Repositories;
 
-use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\Support\Collection;
-use Spatie\Sheets\Factory;
-use Spatie\Sheets\Repository;
 use Spatie\Sheets\Sheet;
+use Spatie\Sheets\Factory;
+use Illuminate\Support\Str;
+use Spatie\Sheets\Repository;
+use Illuminate\Support\Collection;
+use Illuminate\Contracts\Filesystem\Filesystem;
 
 class FilesystemRepository implements Repository
 {
@@ -28,11 +29,11 @@ class FilesystemRepository implements Repository
 
     public function get(string $path): ?Sheet
     {
-        if (! ends_with($path, $this->extension)) {
+        if (!Str::endsWith($path, $this->extension)) {
             $path = "{$path}.{$this->extension}";
         }
 
-        if (! $this->filesystem->exists($path)) {
+        if (!$this->filesystem->exists($path)) {
             return null;
         }
 
@@ -43,7 +44,7 @@ class FilesystemRepository implements Repository
     {
         return collect($this->filesystem->allFiles())
             ->filter(function (string $path) {
-                return ends_with($path, ".{$this->extension}");
+                return Str::endsWith($path, ".{$this->extension}");
             })
             ->map(function (string $path) {
                 return $this->get($path);

@@ -2,6 +2,9 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.3.1 - 2019-09-09
+- Fixed `Str` import for Laravel 6
+
 ## 1.3.0 - 2019-09-03
 - Add support for Laravel 6.0
 - Allow `league/commonmark` versions 0.19 and 1.0
