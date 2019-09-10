@@ -4,6 +4,7 @@ namespace Spatie\Sheets;
 
 use ArrayAccess;
 use JsonSerializable;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\JsonEncodingException;
@@ -90,7 +91,7 @@ class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     {
         $value = $this->attributes[$key] ?? null;
 
-        $accessorFunctionName = 'get'.studly_case($key).'Attribute';
+        $accessorFunctionName = 'get'.Str::studly($key).'Attribute';
 
         if (method_exists($this, $accessorFunctionName)) {
             return $this->$accessorFunctionName($value);
