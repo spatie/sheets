@@ -73,6 +73,27 @@ class SheetTest extends TestCase
     }
 
     /** @test */
+    public function it_can_be_transformed_to_array_with_accessor()
+    {
+        $child = new class extends Sheet {
+            public function getFooAttribute($original)
+            {
+                return 'baz';
+            }
+        };
+
+        $sheet = new $child([
+            'foo' => 'bar',
+            'lorem' => 'ipsum',
+        ]);
+
+        $this->assertEquals([
+            'foo' => 'baz',
+            'lorem' => 'ipsum',
+        ], $sheet->toArray());
+    }
+
+    /** @test */
     public function it_implements_array_access()
     {
         $sheet = new Sheet(['foo' => 'bar']);

@@ -66,7 +66,11 @@ class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     public function toArray(): array
     {
-        return $this->attributes;
+        $keys = array_keys($this->attributes);
+
+        return array_map(function(string $key) {
+            return $this->getAttribute($key);
+        }, array_combine($keys, $keys));
     }
 
     public function jsonSerialize(): array
