@@ -43,15 +43,15 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertInstanceOf(Collection::class, $sheets);
         $this->assertCount(2, $sheets);
 
-        $this->assertInstanceOf(Sheet::class, $sheets[0]);
-        $this->assertEquals('foo-bar', $sheets[0]->slug);
-        $this->assertEquals('Foo bar', $sheets[0]->title);
-        $this->assertEquals("<h1>Foo bar</h1>\n", $sheets[0]->contents);
+        $this->assertInstanceOf(Sheet::class, $sheets['foo-bar.md']);
+        $this->assertEquals('foo-bar', $sheets['foo-bar.md']->slug);
+        $this->assertEquals('Foo bar', $sheets['foo-bar.md']->title);
+        $this->assertEquals("<h1>Foo bar</h1>\n", $sheets['foo-bar.md']->contents);
 
-        $this->assertInstanceOf(Sheet::class, $sheets[1]);
-        $this->assertEquals('hello-world', $sheets[1]->slug);
-        $this->assertEquals('Hello, world!', $sheets[1]->title);
-        $this->assertEquals("<h1>Hello, world!</h1>\n", $sheets[1]->contents);
+        $this->assertInstanceOf(Sheet::class, $sheets['hello-world.md']);
+        $this->assertEquals('hello-world', $sheets['hello-world.md']->slug);
+        $this->assertEquals('Hello, world!', $sheets['hello-world.md']->title);
+        $this->assertEquals("<h1>Hello, world!</h1>\n", $sheets['hello-world.md']->contents);
     }
 
     /** @test */

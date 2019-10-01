@@ -19,7 +19,7 @@ class CustomContentParserTest extends TestCase
         $this->assertInstanceOf(Collection::class, $documents);
         $this->assertCount(1, $documents);
         $this->assertContainsOnlyInstancesOf(Sheet::class, $documents);
-        $this->assertEquals("<h1>Hello, world!</h1>\n", $documents[0]->contents);
+        $this->assertEquals("<h1>Hello, world!</h1>\n", $documents['hello-world.md']->contents);
     }
 
     protected function getEnvironmentSetUp($app)

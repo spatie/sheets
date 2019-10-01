@@ -46,6 +46,9 @@ class FilesystemRepository implements Repository
             ->filter(function (string $path) {
                 return Str::endsWith($path, ".{$this->extension}");
             })
+            ->keyBy(function (string $path) {
+                return $path;
+            })
             ->map(function (string $path) {
                 return $this->get($path);
             });

@@ -19,9 +19,9 @@ class CustomSheetClassTest extends TestCase
         $this->assertInstanceOf(Collection::class, $posts);
         $this->assertCount(1, $posts);
         $this->assertContainsOnlyInstancesOf(Post::class, $posts);
-        $this->assertEquals('My first post', $posts[0]->title);
-        $this->assertEquals(Carbon::parse('1992-02-01'), $posts[0]->date);
-        $this->assertEquals('February 1st, 1992', $posts[0]->formatted_date);
+        $this->assertEquals('My first post', $posts['1992-02-01.my-first-post.md']->title);
+        $this->assertEquals(Carbon::parse('1992-02-01'), $posts['1992-02-01.my-first-post.md']->date);
+        $this->assertEquals('February 1st, 1992', $posts['1992-02-01.my-first-post.md']->formatted_date);
     }
 
     protected function getEnvironmentSetUp($app)
