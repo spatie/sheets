@@ -45,7 +45,7 @@ class Sheets implements Repository
         $this->defaultCollection = $defaultCollection;
     }
 
-    public function getRegisteredCollectionNames(): Collection
+    public function getRegisteredCollectionNames(): array
     {
         return array_keys($this->collections);
     }
