@@ -14,9 +14,18 @@ class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     /** @var array */
     protected $attributes;
 
-    public function __construct(array $attributes = [])
+    /** @var string|null */
+    protected $path;
+
+    public function __construct(array $attributes = [], ?string $path = null)
     {
         $this->attributes = $attributes;
+        $this->path = $path;
+    }
+
+    public function getPath(): ?string
+    {
+        return $this->path;
     }
 
     public function __get(string $key)

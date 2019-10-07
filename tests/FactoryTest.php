@@ -32,5 +32,6 @@ class FactoryTest extends TestCase
         $this->assertEquals('hello-world', $sheet->slug);
         $this->assertEquals('Hello, world!', $sheet->title);
         $this->assertEquals("<h1>Hello, world!</h1>\n", $sheet->contents);
+        $this->assertEquals($path, $sheet->getPath());
     }
 }
