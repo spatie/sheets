@@ -50,4 +50,14 @@ class FilesystemRepository implements Repository
                 return $this->get($path);
             });
     }
+
+    public function getFilesystem(): Filesystem
+    {
+        return $this->filesystem;
+    }
+
+    public function getExtension(): string
+    {
+        return $this->extension;
+    }
 }

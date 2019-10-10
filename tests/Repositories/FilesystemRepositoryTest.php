@@ -2,6 +2,7 @@
 
 namespace Spatie\Sheets\Tests\Repositories;
 
+use Illuminate\Contracts\Filesystem\Filesystem;
 use PHPUnit\Framework\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
@@ -63,5 +64,35 @@ class FilesystemRepositoryTest extends TestCase
         );
 
         $this->assertNull($filesystemRepository->get('invalid_path'));
+    }
+
+    /** @test */
+    public function it_can_return_instance_of_filesystem()
+    {
+        $filesystemRepository = new FilesystemRepository(
+            $this->createFactory(),
+            $this->createFilesystem()
+        );
+
+        $this->assertInstanceOf(Filesystem::class, $filesystemRepository->getFilesystem());
+    }
+
+    /** @test */
+    public function it_can_return_file_extension()
+    {
+        $filesystemRepository = new FilesystemRepository(
+            $this->createFactory(),
+            $this->createFilesystem()
+        );
+
+        $this->assertEquals('md', $filesystemRepository->getExtension());
+
+        $filesystemRepository = new FilesystemRepository(
+            $this->createFactory(),
+            $this->createFilesystem(),
+            'json'
+        );
+
+        $this->assertEquals('json', $filesystemRepository->getExtension());
     }
 }
