@@ -3,8 +3,8 @@
 namespace Spatie\Sheets\Tests\Integration;
 
 use Illuminate\Support\Collection;
-use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Sheet;
+use Spatie\Sheets\Sheets;
 
 class CustomDiskTest extends TestCase
 {
@@ -28,7 +28,7 @@ class CustomDiskTest extends TestCase
         $app['config']->set('sheets', [
             'collections' => [
                 'posts' => [
-                    'disk' => 'content'
+                    'disk' => 'content',
                 ],
             ],
         ]);

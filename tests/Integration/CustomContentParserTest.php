@@ -2,10 +2,8 @@
 
 namespace Spatie\Sheets\Tests\Integration;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
-use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Sheets;
 

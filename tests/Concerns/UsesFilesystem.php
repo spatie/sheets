@@ -2,10 +2,10 @@
 
 namespace Spatie\Sheets\Tests\Concerns;
 
+use Illuminate\Contracts\Filesystem\Factory as FilesystemManagerContract;
 use Illuminate\Filesystem\FilesystemAdapter;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem as Flysystem;
-use Illuminate\Contracts\Filesystem\Factory as FilesystemManagerContract;
 
 trait UsesFilesystem
 {
@@ -17,8 +17,7 @@ trait UsesFilesystem
 
         $adapter = new FilesystemAdapter($flysystem);
 
-        return new class($adapter) implements FilesystemManagerContract
-        {
+        return new class($adapter) implements FilesystemManagerContract {
             private $adapter;
 
             public function __construct($adapter)

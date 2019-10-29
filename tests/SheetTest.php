@@ -3,12 +3,12 @@
 namespace Spatie\Sheets\Tests;
 
 use ArrayAccess;
-use ReflectionClass;
-use JsonSerializable;
-use Spatie\Sheets\Sheet;
-use PHPUnit\Framework\TestCase;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+use JsonSerializable;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use Spatie\Sheets\Sheet;
 
 class SheetTest extends TestCase
 {

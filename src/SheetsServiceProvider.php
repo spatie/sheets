@@ -2,7 +2,6 @@
 
 namespace Spatie\Sheets;
 
-use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParsers\MarkdownParser;

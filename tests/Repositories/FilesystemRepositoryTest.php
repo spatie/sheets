@@ -2,10 +2,10 @@
 
 namespace Spatie\Sheets\Tests\Repositories;
 
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
-use Illuminate\Support\Collection;
 use Spatie\Sheets\Tests\Concerns\UsesFactory;
 use Spatie\Sheets\Tests\Concerns\UsesFilesystem;
 

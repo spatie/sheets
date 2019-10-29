@@ -3,8 +3,8 @@
 namespace Spatie\Sheets\Tests\Integration;
 
 use Illuminate\Support\Collection;
-use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Sheet;
+use Spatie\Sheets\Sheets;
 
 class DefaultConfigTest extends TestCase
 {
