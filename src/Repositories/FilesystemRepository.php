@@ -7,7 +7,7 @@ use Spatie\Sheets\Factory;
 use Illuminate\Support\Str;
 use Spatie\Sheets\Repository;
 use Illuminate\Support\Collection;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Contracts\Filesystem\Factory as FilesystemManagerContract;
 
 class FilesystemRepository implements Repository
 {
@@ -20,11 +20,11 @@ class FilesystemRepository implements Repository
     /** @var string */
     protected $extension;
 
-    public function __construct(Factory $factory, Filesystem $filesystem, string $extension = 'md')
+    public function __construct(Factory $factory, FilesystemManagerContract $filesystem, array $config = [])
     {
         $this->factory = $factory;
-        $this->filesystem = $filesystem;
-        $this->extension = $extension;
+        $this->filesystem = $filesystem->disk($config['disk'] ?? null);
+        $this->extension = $config['extension'] ?? 'md';
     }
 
     public function get(string $path): ?Sheet

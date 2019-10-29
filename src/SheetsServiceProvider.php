@@ -60,11 +60,7 @@ class SheetsServiceProvider extends ServiceProvider
                     $config['sheet_class']
                 );
 
-                $repository = new FilesystemRepository(
-                    $factory,
-                    $this->app->make(FilesystemManager::class)->disk($config['disk']),
-                    $config['extension']
-                );
+                $repository = $this->app->make($config['repository'], compact('factory', 'config'));
 
                 $sheets->registerCollection($name, $repository);
             }
@@ -87,6 +83,7 @@ class SheetsServiceProvider extends ServiceProvider
             'path_parser' => SlugParser::class,
             'content_parser' => MarkdownWithFrontMatterParser::class,
             'extension' => 'md',
+            'repository' => FilesystemRepository::class,
         ];
 
         return array_merge($defaults, $config);
