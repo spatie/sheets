@@ -3,11 +3,11 @@
 namespace Spatie\Sheets;
 
 use ArrayAccess;
-use JsonSerializable;
-use Illuminate\Support\Str;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\JsonEncodingException;
+use Illuminate\Support\Str;
+use JsonSerializable;
 
 class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 {
@@ -46,7 +46,7 @@ class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
 
     public function offsetExists($key)
     {
-        return !is_null($this->getAttribute($key));
+        return ! is_null($this->getAttribute($key));
     }
 
     public function offsetGet($key)
@@ -68,7 +68,7 @@ class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
     {
         $keys = array_keys($this->attributes);
 
-        return array_map(function(string $key) {
+        return array_map(function (string $key) {
             return $this->getAttribute($key);
         }, array_combine($keys, $keys));
     }

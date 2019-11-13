@@ -4,9 +4,6 @@ namespace Spatie\Sheets\Tests\ContentParsers;
 
 use PHPUnit\Framework\TestCase;
 use Spatie\Sheets\ContentParsers\JsonParser;
-use Spatie\Sheets\ContentParsers\MarkdownParser;
-use League\CommonMark\CommonMarkConverter;
-use Spatie\Sheets\ContentParsers\YamlParser;
 
 class JsonParserTest extends TestCase
 {
@@ -21,8 +18,8 @@ class JsonParserTest extends TestCase
                 'data' => [
                     'foo',
                     'bar',
-                ]
-            ]
+                ],
+            ],
         ];
 
         $this->assertEquals($expected, $jsonParser->parse(json_encode($expected)));

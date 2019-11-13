@@ -3,7 +3,6 @@
 namespace Spatie\Sheets\ContentParsers;
 
 use Spatie\Sheets\ContentParser;
-use Symfony\Component\Yaml\Yaml;
 
 class JsonParser implements ContentParser
 {

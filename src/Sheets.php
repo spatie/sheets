@@ -22,7 +22,8 @@ class Sheets implements Repository
         return $this->collections[$name];
     }
 
-    public function registerCollection(string $name, Repository $repository) {
+    public function registerCollection(string $name, Repository $repository)
+    {
         $this->collections[$name] = $repository;
     }
 

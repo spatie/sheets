@@ -3,8 +3,6 @@
 namespace Spatie\Sheets\Tests\ContentParsers;
 
 use PHPUnit\Framework\TestCase;
-use Spatie\Sheets\ContentParsers\MarkdownParser;
-use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParsers\YamlParser;
 
 class YamlParserTest extends TestCase
@@ -28,8 +26,8 @@ class YamlParserTest extends TestCase
                 'data' => [
                     'foo',
                     'bar',
-                ]
-            ]
+                ],
+            ],
         ];
 
         $this->assertEquals($expected, $yamlParser->parse($contents));

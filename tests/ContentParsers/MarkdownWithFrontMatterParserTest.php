@@ -2,9 +2,9 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
+use League\CommonMark\CommonMarkConverter;
 use PHPUnit\Framework\TestCase;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
-use League\CommonMark\CommonMarkConverter;
 
 class MarkdownWithFrontMatterParserTest extends TestCase
 {

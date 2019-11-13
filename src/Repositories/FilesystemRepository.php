@@ -2,12 +2,12 @@
 
 namespace Spatie\Sheets\Repositories;
 
-use Spatie\Sheets\Sheet;
-use Spatie\Sheets\Factory;
-use Illuminate\Support\Str;
-use Spatie\Sheets\Repository;
+use Illuminate\Contracts\Filesystem\Factory as FilesystemManagerContract;
 use Illuminate\Support\Collection;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Str;
+use Spatie\Sheets\Factory;
+use Spatie\Sheets\Repository;
+use Spatie\Sheets\Sheet;
 
 class FilesystemRepository implements Repository
 {
@@ -20,20 +20,20 @@ class FilesystemRepository implements Repository
     /** @var string */
     protected $extension;
 
-    public function __construct(Factory $factory, Filesystem $filesystem, string $extension = 'md')
+    public function __construct(Factory $factory, FilesystemManagerContract $filesystem, array $config = [])
     {
         $this->factory = $factory;
-        $this->filesystem = $filesystem;
-        $this->extension = $extension;
+        $this->filesystem = $filesystem->disk($config['disk'] ?? null);
+        $this->extension = $config['extension'] ?? 'md';
     }
 
     public function get(string $path): ?Sheet
     {
-        if (!Str::endsWith($path, $this->extension)) {
+        if (! Str::endsWith($path, $this->extension)) {
             $path = "{$path}.{$this->extension}";
         }
 
-        if (!$this->filesystem->exists($path)) {
+        if (! $this->filesystem->exists($path)) {
             return null;
         }
 
