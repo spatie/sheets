@@ -3,7 +3,7 @@
 namespace Spatie\Sheets\Tests;
 
 use League\CommonMark\CommonMarkConverter;
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;

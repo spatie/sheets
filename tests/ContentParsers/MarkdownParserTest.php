@@ -2,8 +2,7 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
-use League\CommonMark\CommonMarkConverter;
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
 
 class MarkdownParserTest extends TestCase
@@ -11,9 +10,7 @@ class MarkdownParserTest extends TestCase
     /** @test */
     public function it_converts_a_front_matter_document_to_attributes()
     {
-        $markdownParser = new MarkdownParser(
-            new CommonMarkConverter()
-        );
+        $markdownParser = $this->app->make(MarkdownParser::class);
 
         $contents = '# Hello, world!';
 

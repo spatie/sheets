@@ -2,7 +2,7 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\JsonParser;
 
 class JsonParserTest extends TestCase
@@ -10,7 +10,7 @@ class JsonParserTest extends TestCase
     /** @test */
     public function it_converts_a_front_matter_document_to_attributes()
     {
-        $jsonParser = new JsonParser();
+        $jsonParser = $this->app->make(JsonParser::class);
 
         $expected = [
             'title' => 'Hello, world!',

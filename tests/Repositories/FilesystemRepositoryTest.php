@@ -3,7 +3,7 @@
 namespace Spatie\Sheets\Tests\Repositories;
 
 use Illuminate\Support\Collection;
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Tests\Concerns\UsesFactory;
