@@ -31,7 +31,9 @@ class SheetsServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/sheets.php', 'sheets');
 
-        $this->app->singletonIf(ConverterInterface::class, CommonMarkConverter::class);
+        if (! $this->app->bound(ConverterInterface::class)) {
+            $this->app->singleton(ConverterInterface::class, CommonMarkConverter::class);
+        }
 
         $this->app->singleton(Sheets::class, function () {
             $sheets = new Sheets();
