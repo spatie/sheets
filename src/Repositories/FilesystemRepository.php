@@ -4,6 +4,7 @@ namespace Spatie\Sheets\Repositories;
 
 use Illuminate\Contracts\Filesystem\Factory as FilesystemManagerContract;
 use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\Repository;
@@ -43,6 +44,17 @@ class FilesystemRepository implements Repository
     public function all(): Collection
     {
         return collect($this->filesystem->allFiles())
+            ->filter(function (string $path) {
+                return Str::endsWith($path, ".{$this->extension}");
+            })
+            ->map(function (string $path) {
+                return $this->get($path);
+            });
+    }
+
+    public function allLazy(): LazyCollection
+    {
+        return LazyCollection::make($this->filesystem->allFiles())
             ->filter(function (string $path) {
                 return Str::endsWith($path, ".{$this->extension}");
             })
