@@ -19,9 +19,9 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "illuminate/contracts": "^6.0",
-        "illuminate/filesystem": "^6.0",
-        "illuminate/support": "^6.0",
+        "illuminate/contracts": "^6.0|^7.0",
+        "illuminate/filesystem": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0",
         "league/commonmark": "^1.0",
         "spatie/yaml-front-matter": "^2.0",
         "symfony/yaml": "^4.0|^5.0"
