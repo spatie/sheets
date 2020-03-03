@@ -2,8 +2,8 @@
 
 All notable changes to `sheets` will be documented in this file
 
-## 1.3.2 - 2019-09-11
-- Fixed `Str` import for Laravel 6
+## 1.4.0 - 2020-03-03
+- add support for Laravel 7
 
 ## 1.3.1 - 2019-09-09
 - Fixed `Str` import for Laravel 6
