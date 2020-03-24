@@ -3,7 +3,7 @@
 namespace Spatie\Sheets\Tests\PathParsers;
 
 use Illuminate\Support\Carbon;
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 
 class SlugWithDateParserTest extends TestCase

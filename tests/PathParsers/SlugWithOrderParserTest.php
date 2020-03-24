@@ -2,7 +2,7 @@
 
 namespace Spatie\Sheets\Tests\PathParsers;
 
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\PathParsers\SlugWithOrderParser;
 
 class SlugWithOrderParserTest extends TestCase

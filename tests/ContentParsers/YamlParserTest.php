@@ -2,7 +2,7 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\YamlParser;
 
 class YamlParserTest extends TestCase
@@ -10,7 +10,7 @@ class YamlParserTest extends TestCase
     /** @test */
     public function it_converts_a_front_matter_document_to_attributes()
     {
-        $yamlParser = new YamlParser();
+        $yamlParser = $this->app->make(YamlParser::class);
 
         $contents = implode("\n", [
             'title: Hello, world!',
