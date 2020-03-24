@@ -32,6 +32,6 @@ class Factory
 
         $sheetClass = $this->sheetClass;
 
-        return new $sheetClass($attributes);
+        return new $sheetClass($attributes, $path);
     }
 }
