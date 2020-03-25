@@ -43,6 +43,31 @@ class FilesystemRepository implements Repository
         });
     }
 
+    public function getBySlug(string $slug): ?Sheet
+    {
+        $parts = explode('/', $slug);
+
+        $name = array_pop($parts);
+
+        $pattern = sprintf(
+            '/^%s%s%s$/',
+            preg_quote(implode('/', $parts), '/'),
+            !empty($parts) ? preg_quote('/', '/') : '',
+            '([\w\-]+\.|)'.preg_quote($this->normalizePath($name))
+        );
+
+        return $this->get(
+            collect($this->filesystem->allFiles())
+                ->filter(function (string $path): bool {
+                    return Str::endsWith($path, ".{$this->extension}");
+                })
+                ->filter(function (string $path) use ($pattern): bool {
+                    return boolval(preg_match($pattern, $path));
+                })
+                ->first()
+        );
+    }
+
     public function all(): Collection
     {
         return collect($this->filesystem->allFiles())

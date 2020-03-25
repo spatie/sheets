@@ -9,9 +9,9 @@ use League\Flysystem\Filesystem as Flysystem;
 
 trait UsesFilesystem
 {
-    protected function createFilesystem(): FilesystemManagerContract
+    protected function createFilesystem(string $path = 'content'): FilesystemManagerContract
     {
-        $adapter = new Local(__DIR__.'/../fixtures/content');
+        $adapter = new Local(__DIR__.'/../fixtures/'.$path);
 
         $flysystem = new Flysystem($adapter);
 
