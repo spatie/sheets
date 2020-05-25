@@ -2,8 +2,11 @@
 
 All notable changes to `sheets` will be documented in this file
 
-## 1.4.0 - 2020-03-03
-- add support for Laravel 7
+## 1.5.0 - 2020-05-25
+- Add Laravel 7 support
+
+## 1.4.0 - 2020-10-07
+- Add support for JSON and YAML files with `JsonParser` and `YamlParser`
 
 ## 1.3.1 - 2019-09-09
 - Fixed `Str` import for Laravel 6
