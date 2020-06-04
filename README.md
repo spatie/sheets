@@ -47,6 +47,14 @@ class SheetController
 @endsection
 ```
 
+## Features
+
+- Allows any document format (by default Markdown files with front matter)
+- Stores your content wherever you want (uses Laravel's filesystem component)
+- Keeps multiple collections of content (e.g. posts, pages, etc.)
+- Casts your document contents to Eloquent-like classes with accessors
+- Convention over configuration, near-zero setup if you use the defaults
+
 ## Support us
 
 Learn how to create a package like this one, by watching our premium video course:
@@ -54,77 +62,6 @@ Learn how to create a package like this one, by watching our premium video cours
 [![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
-### Features
-
-- Allows any document format (by default Markdown files with front matter)
-- Stores your content wherever you want (uses Laravel's filesystem component)
-- Keeps multiple collections of content (e.g. posts, pages, etc.)
-- Casts your document contents to Eloquent-like classes with accessors
-- Convention over configuration, near-zero setup if you use the defaults
-
-# Store & retrieve your static content in plain text files
-
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
-[![Build Status](https://img.shields.io/travis/spatie/sheets/master.svg?style=flat-square)](https://travis-ci.org/spatie/sheets)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/sheets/run-tests?label=tests)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
-
-Sheets is a Laravel package to store, retrieve & index content stored as text files. Markdown & front matter are supported out of the box, but you can parse & extract data from your files in whatever format you prefer.
-
-Sheets can be added to any existing Laravel application and is a perfect fit for documentation sites & personal blogs.
-
-```md
----
-title: Home
----
-# Hello, world!
-
-Welcome to Sheets!
-```
-
-```php
-class SheetController
-{
-    public function index(Sheets $sheets)
-    {
-        return view('sheet', [
-            'sheet' => $sheets->get('home'),
-        ]);
-    }
-
-    public function show(string $id, Sheets $sheets)
-    {
-        return view('sheet', [
-            'sheet' => $sheets->get($id),
-        ]);
-    }
-}
-```
-
-```blade
-@extends('layouts.app', [
-    'title' => $sheet->title,
-])
-
-@section('main')
-    {{ $sheet->contents }}
-@endsection
-```
-
-### Features
-
-- Allows any document format (by default Markdown files with front matter)
-- Stores your content wherever you want (uses Laravel's filesystem component)
-- Keeps multiple collections of content (e.g. posts, pages, etc.)
-- Casts your document contents to Eloquent-like classes with accessors
-- Convention over configuration, near-zero setup if you use the defaults
-
-## Support us
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us). 
 
 We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
