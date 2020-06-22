@@ -5,7 +5,7 @@ namespace Spatie\Sheets;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConverterInterface;
-use Spatie\Sheets\ContentParsers\MarkdownParser;
+use League\CommonMark\MarkdownConverterInterface;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Repositories\FilesystemRepository;
@@ -31,8 +31,10 @@ class SheetsServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/sheets.php', 'sheets');
 
-        if (! $this->app->bound(ConverterInterface::class)) {
-            $this->app->singleton(ConverterInterface::class, CommonMarkConverter::class);
+        if (! $this->app->bound(CommonMarkConverter::class)) {
+            $this->app->singleton(CommonMarkConverter::class);
+            $this->app->alias(CommonMarkConverter::class, MarkdownConverterInterface::class);
+            $this->app->alias(CommonMarkConverter::class, ConverterInterface::class);
         }
 
         $this->app->singleton(Sheets::class, function () {
