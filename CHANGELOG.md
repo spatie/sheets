@@ -2,6 +2,9 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.5.1 - 2020-06-22
+- Improve CommonMark interface bindings
+
 ## 1.5.0 - 2020-05-25
 - Add Laravel 7 support
 
