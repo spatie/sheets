@@ -1,5 +1,6 @@
 <?php
 
+use Spatie\Sheets\Repository;
 use Spatie\Sheets\Sheets;
 
 if (! function_exists('sheets')) {
@@ -8,7 +9,7 @@ if (! function_exists('sheets')) {
      *
      * @return \Spatie\Sheets\Repository|\Spatie\Sheets\Sheets
      */
-    function sheets(?string $collection = null)
+    function sheets(?string $collection = null): Repository
     {
         if ($collection === null) {
             return app(Sheets::class);
