@@ -2,6 +2,9 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.6.0 - 2020-06-26
+- allow to directly pass the collection name into sheets()
+
 ## 1.5.1 - 2020-06-22
 - Improve CommonMark interface bindings
 
