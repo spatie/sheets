@@ -46,13 +46,7 @@ class FilesystemRepository implements Repository
 
     public function all(): Collection
     {
-        return collect($this->filesystem->allFiles())
-            ->filter(function (string $path) {
-                return Str::endsWith($path, ".{$this->extension}");
-            })
-            ->map(function (string $path) {
-                return $this->get($path);
-            });
+        return $this->allLazy()->collect();
     }
 
     public function allLazy(): LazyCollection
