@@ -7,11 +7,14 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
 use Spatie\Sheets\Factory;
+use Spatie\Sheets\Repositories\Traits\CachedSheets;
 use Spatie\Sheets\Repository;
 use Spatie\Sheets\Sheet;
 
 class FilesystemRepository implements Repository
 {
+    use CachedSheets;
+
     /** @var \Spatie\Sheets\Factory */
     protected $factory;
 
@@ -30,15 +33,15 @@ class FilesystemRepository implements Repository
 
     public function get(string $path): ?Sheet
     {
-        if (! Str::endsWith($path, $this->extension)) {
-            $path = "{$path}.{$this->extension}";
-        }
+        $path = $this->normalizePath($path);
 
         if (! $this->filesystem->exists($path)) {
             return null;
         }
 
-        return $this->factory->make($path, $this->filesystem->get($path));
+        return $this->remember($path, function (string $path): Sheet {
+            return $this->factory->make($path, $this->filesystem->get($path));
+        });
     }
 
     public function all(): Collection
@@ -61,5 +64,10 @@ class FilesystemRepository implements Repository
             ->map(function (string $path) {
                 return $this->get($path);
             });
+    }
+
+    protected function normalizePath(string $path): string
+    {
+        return Str::finish($path, ".{$this->extension}");
     }
 }

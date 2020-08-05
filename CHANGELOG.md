@@ -2,8 +2,17 @@
 
 All notable changes to `sheets` will be documented in this file
 
-## 1.3.2 - 2019-09-11
-- Fixed `Str` import for Laravel 6
+## 1.6.0 - 2020-06-26
+- allow to directly pass the collection name into sheets()
+
+## 1.5.1 - 2020-06-22
+- Improve CommonMark interface bindings
+
+## 1.5.0 - 2020-05-25
+- Add Laravel 7 support
+
+## 1.4.0 - 2020-10-07
+- Add support for JSON and YAML files with `JsonParser` and `YamlParser`
 
 ## 1.3.1 - 2019-09-09
 - Fixed `Str` import for Laravel 6

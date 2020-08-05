@@ -4,7 +4,7 @@ namespace Spatie\Sheets\Tests\Repositories;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Tests\Concerns\UsesFactory;
@@ -88,5 +88,41 @@ class FilesystemRepositoryTest extends TestCase
         );
 
         $this->assertNull($filesystemRepository->get('invalid_path'));
+    }
+
+    /** @test */
+    public function it_gets_the_same_sheet_instance()
+    {
+        $filesystemRepository = new FilesystemRepository(
+            $this->createFactory(),
+            $this->createFilesystem()
+        );
+
+        $sheet1 = $filesystemRepository->get('hello-world');
+        $this->assertInstanceOf(Sheet::class, $sheet1);
+
+        $sheet2 = $filesystemRepository->get('hello-world.md');
+        $this->assertInstanceOf(Sheet::class, $sheet2);
+
+        $this->assertSame($sheet1, $sheet2);
+    }
+
+    /** @test */
+    public function it_can_forget_a_cached_sheet()
+    {
+        $filesystemRepository = new FilesystemRepository(
+            $this->createFactory(),
+            $this->createFilesystem()
+        );
+
+        $sheet1 = $filesystemRepository->get('hello-world');
+        $this->assertInstanceOf(Sheet::class, $sheet1);
+
+        $filesystemRepository->forget('hello-world');
+
+        $sheet2 = $filesystemRepository->get('hello-world');
+        $this->assertInstanceOf(Sheet::class, $sheet2);
+
+        $this->assertNotSame($sheet1, $sheet2);
     }
 }

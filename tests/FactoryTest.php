@@ -3,7 +3,7 @@
 namespace Spatie\Sheets\Tests;
 
 use League\CommonMark\CommonMarkConverter;
-use PHPUnit\Framework\TestCase;
+use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;
@@ -32,5 +32,6 @@ class FactoryTest extends TestCase
         $this->assertEquals('hello-world', $sheet->slug);
         $this->assertEquals('Hello, world!', $sheet->title);
         $this->assertEquals("<h1>Hello, world!</h1>\n", $sheet->contents);
+        $this->assertEquals($path, $sheet->getPath());
     }
 }
