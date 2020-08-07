@@ -3,6 +3,7 @@
 namespace Spatie\Sheets\Tests\Repositories;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
@@ -52,6 +53,30 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertEquals('hello-world', $sheets[1]->slug);
         $this->assertEquals('Hello, world!', $sheets[1]->title);
         $this->assertEquals("<h1>Hello, world!</h1>\n", $sheets[1]->contents);
+    }
+
+    /** @test */
+    public function it_can_get_all_sheets_as_lazy_collection()
+    {
+        $filesystemRepository = new FilesystemRepository(
+            $this->createFactory(),
+            $this->createFilesystem()
+        );
+
+        $sheets = $filesystemRepository->allLazy();
+
+        $this->assertInstanceOf(LazyCollection::class, $sheets);
+        $this->assertCount(2, $sheets);
+
+        $this->assertInstanceOf(Sheet::class, $sheets->get(0));
+        $this->assertEquals('foo-bar', $sheets->get(0)->slug);
+        $this->assertEquals('Foo bar', $sheets->get(0)->title);
+        $this->assertEquals("<h1>Foo bar</h1>\n", $sheets->get(0)->contents);
+
+        $this->assertInstanceOf(Sheet::class, $sheets->get(1));
+        $this->assertEquals('hello-world', $sheets->get(1)->slug);
+        $this->assertEquals('Hello, world!', $sheets->get(1)->title);
+        $this->assertEquals("<h1>Hello, world!</h1>\n", $sheets->get(1)->contents);
     }
 
     /** @test */
