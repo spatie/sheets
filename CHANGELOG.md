@@ -3,7 +3,6 @@
 All notable changes to `sheets` will be documented in this file
 
 ## 1.6.1 - 2020-09-08
-
 - add support for Laravel 8
 
 ## 1.6.0 - 2020-06-26
