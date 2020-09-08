@@ -3,8 +3,8 @@
 namespace Spatie\Sheets\Tests\PathParsers;
 
 use Illuminate\Support\Carbon;
-use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
+use Spatie\Sheets\Tests\TestCase;
 
 class SlugWithDateParserTest extends TestCase
 {

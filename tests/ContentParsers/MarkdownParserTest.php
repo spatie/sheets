@@ -2,8 +2,8 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
-use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\MarkdownParser;
+use Spatie\Sheets\Tests\TestCase;
 
 class MarkdownParserTest extends TestCase
 {

@@ -2,9 +2,8 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
-use League\CommonMark\CommonMarkConverter;
-use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
+use Spatie\Sheets\Tests\TestCase;
 
 class MarkdownWithFrontMatterParserTest extends TestCase
 {

@@ -6,7 +6,6 @@ use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use Spatie\Sheets\Tests\TestCase;
 use ReflectionClass;
 use Spatie\Sheets\Sheet;
 

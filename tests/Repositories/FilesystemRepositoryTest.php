@@ -4,11 +4,11 @@ namespace Spatie\Sheets\Tests\Repositories;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
-use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\Repositories\FilesystemRepository;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Tests\Concerns\UsesFactory;
 use Spatie\Sheets\Tests\Concerns\UsesFilesystem;
+use Spatie\Sheets\Tests\TestCase;
 
 class FilesystemRepositoryTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
-use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\ContentParsers\JsonParser;
+use Spatie\Sheets\Tests\TestCase;
 
 class JsonParserTest extends TestCase
 {

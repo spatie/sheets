@@ -2,8 +2,8 @@
 
 namespace Spatie\Sheets\Tests\PathParsers;
 
-use Spatie\Sheets\Tests\TestCase;
 use Spatie\Sheets\PathParsers\SlugWithOrderParser;
+use Spatie\Sheets\Tests\TestCase;
 
 class SlugWithOrderParserTest extends TestCase
 {

@@ -1,7 +1,6 @@
 # Store & retrieve your static content in plain text files
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
-[![Build Status](https://img.shields.io/travis/spatie/sheets/master.svg?style=flat-square)](https://travis-ci.org/spatie/sheets)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/sheets/run-tests?label=tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
 
