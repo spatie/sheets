@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConverterInterface;
 use League\CommonMark\MarkdownConverterInterface;
+use Spatie\Sheets\Collections\SheetCollection;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Repositories\FilesystemRepository;
@@ -78,6 +79,7 @@ class SheetsServiceProvider extends ServiceProvider
             'content_parser' => MarkdownWithFrontMatterParser::class,
             'extension' => 'md',
             'repository' => FilesystemRepository::class,
+            'collection' => SheetCollection::class,
         ];
 
         return array_merge($defaults, $config);

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Filesystem\Factory as FilesystemManagerContract;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
+use Spatie\Sheets\Collections\SheetCollection;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\Repositories\Traits\CachedSheets;
 use Spatie\Sheets\Repository;
@@ -24,11 +25,15 @@ class FilesystemRepository implements Repository
     /** @var string */
     protected $extension;
 
+    /** @var string */
+    protected $collection;
+
     public function __construct(Factory $factory, FilesystemManagerContract $filesystem, array $config = [])
     {
         $this->factory = $factory;
         $this->filesystem = $filesystem->disk($config['disk'] ?? null);
         $this->extension = $config['extension'] ?? 'md';
+        $this->collection = $config['collection'] ?? SheetCollection::class;
     }
 
     public function get(string $path): ?Sheet
@@ -51,7 +56,7 @@ class FilesystemRepository implements Repository
 
     public function allLazy(): LazyCollection
     {
-        return LazyCollection::make($this->filesystem->allFiles())
+        return $this->collect()
             ->filter(function (string $path) {
                 return Str::endsWith($path, ".{$this->extension}");
             })
@@ -63,5 +68,13 @@ class FilesystemRepository implements Repository
     protected function normalizePath(string $path): string
     {
         return Str::finish($path, ".{$this->extension}");
+    }
+
+    protected function collect(): LazyCollection
+    {
+        return forward_static_call(
+            [$this->collection, 'make'],
+            $this->filesystem->allFiles()
+        );
     }
 }
