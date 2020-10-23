@@ -6,5 +6,4 @@ use Illuminate\Support\LazyCollection;
 
 class SheetCollection extends LazyCollection
 {
-
 }
