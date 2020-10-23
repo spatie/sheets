@@ -63,7 +63,7 @@ class FilesystemRepositoryTest extends TestCase
             $this->createFilesystem()
         );
 
-        $sheets = $filesystemRepository->allLazy();
+        $sheets = $filesystemRepository->cursor();
 
         $this->assertInstanceOf(LazyCollection::class, $sheets);
         $this->assertCount(2, $sheets);

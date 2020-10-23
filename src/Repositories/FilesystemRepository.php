@@ -46,10 +46,10 @@ class FilesystemRepository implements Repository
 
     public function all(): Collection
     {
-        return $this->allLazy()->collect();
+        return $this->cursor()->collect();
     }
 
-    public function allLazy(): LazyCollection
+    public function cursor(): LazyCollection
     {
         return LazyCollection::make($this->filesystem->allFiles())
             ->filter(function (string $path) {
