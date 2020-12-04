@@ -2,6 +2,9 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.7.2 - 2020-12-04
+- add support for PHP 8
+
 ## 1.7.1 - 2020-09-08
 - add support for Laravel 8
 
