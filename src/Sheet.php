@@ -53,21 +53,24 @@ class Sheet implements ArrayAccess, Arrayable, Jsonable, JsonSerializable
         return $this->toJson();
     }
 
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return ! is_null($this->getAttribute($key));
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return $this->getAttribute($key);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $value)
     {
         $this->$key = $value;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($key)
     {
         unset($this->attributes[$key]);
