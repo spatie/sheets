@@ -2,6 +2,10 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.8.1 - 2022-01-20
+
+- fix registration problem
+
 ## 1.8.0 - 2021-12-13
 
 ## What's Changed
