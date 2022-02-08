@@ -22,7 +22,7 @@
         "illuminate/contracts": "^8.71",
         "illuminate/filesystem": "^8.71",
         "illuminate/support": "^8.71",
-        "league/commonmark": "^1.0",
+        "league/commonmark": "^1.0|^2.0",
         "spatie/yaml-front-matter": "^2.0",
         "symfony/yaml": "^4.0|^5.0"
     },
