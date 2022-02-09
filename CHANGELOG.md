@@ -2,6 +2,18 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.9.1 - 2022-02-09
+
+## What's Changed
+
+- Update composer.json by @vladunguru in https://github.com/spatie/sheets/pull/68
+
+## New Contributors
+
+- @vladunguru made their first contribution in https://github.com/spatie/sheets/pull/68
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.9.0...1.9.1
+
 ## 1.9.0 - 2022-02-09
 
 ## What's Changed
