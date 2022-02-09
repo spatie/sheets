@@ -2,6 +2,18 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.9.0 - 2022-02-09
+
+## What's Changed
+
+- Add support for Laravel 9 by @mbabker in https://github.com/spatie/sheets/pull/69
+
+## New Contributors
+
+- @mbabker made their first contribution in https://github.com/spatie/sheets/pull/69
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.8.1...1.9.0
+
 ## 1.8.1 - 2022-01-20
 
 - fix registration problem
