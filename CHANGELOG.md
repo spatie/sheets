@@ -2,6 +2,10 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.9.2 - 2023-02-01
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.9.1...1.9.2
+
 ## 1.9.1 - 2022-02-09
 
 ## What's Changed
