@@ -2,6 +2,18 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.10.0 - 2023-02-16
+
+### What's Changed
+
+- Laravel 10.x Compatibility by @laravel-shift in https://github.com/spatie/sheets/pull/71
+
+### New Contributors
+
+- @laravel-shift made their first contribution in https://github.com/spatie/sheets/pull/71
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.9.2...1.10.0
+
 ## 1.9.2 - 2023-02-01
 
 **Full Changelog**: https://github.com/spatie/sheets/compare/1.9.1...1.9.2
