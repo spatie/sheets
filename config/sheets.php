@@ -9,7 +9,7 @@ return [
 
         'posts' => [
             'disk' => 'posts',
-            'sheet_class' => App\Post::class,
+            'sheet_class' => App\Models\Post::class,
             'path_parser' => Spatie\Sheets\PathParsers\SlugWithDateParser::class,
             'content_parser' => Spatie\Sheets\ContentParsers\MarkdownParser::class,
             'extension' => 'txt',
