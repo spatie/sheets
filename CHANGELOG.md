@@ -2,6 +2,22 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.11.0 - 2023-12-18
+
+### What's Changed
+
+* Update Default Sheet Class Path by @akr4m in https://github.com/spatie/sheets/pull/72
+* Update README.md by @fsamapoor in https://github.com/spatie/sheets/pull/73
+* Allow Symfony 7.x by @thecaliskan in https://github.com/spatie/sheets/pull/74
+
+### New Contributors
+
+* @akr4m made their first contribution in https://github.com/spatie/sheets/pull/72
+* @fsamapoor made their first contribution in https://github.com/spatie/sheets/pull/73
+* @thecaliskan made their first contribution in https://github.com/spatie/sheets/pull/74
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.10.0...1.11.0
+
 ## 1.10.0 - 2023-02-16
 
 ### What's Changed
