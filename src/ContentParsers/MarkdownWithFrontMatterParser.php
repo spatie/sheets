@@ -21,7 +21,7 @@ class MarkdownWithFrontMatterParser implements ContentParser
     {
         $document = YamlFrontMatter::parse($contents);
 
-        $htmlContents = $this->commonMarkConverter->convertToHtml($document->body());
+        $htmlContents = $this->commonMarkConverter->convert($document->body());
 
         return array_merge(
             $document->matter(),

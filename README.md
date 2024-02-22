@@ -340,7 +340,7 @@ class MarkdownWithFrontMatterParser implements ContentParser
 
         return array_merge(
             $document->matter(),
-            ['contents' => $this->commonMarkConverter->convertToHtml($document->body())]
+            ['contents' => $this->commonMarkConverter->convert($document->body())]
         );
     }
 }

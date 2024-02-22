@@ -18,7 +18,7 @@ class MarkdownParser implements ContentParser
 
     public function parse(string $contents): array
     {
-        $htmlContents = $this->commonMarkConverter->convertToHtml($contents);
+        $htmlContents = $this->commonMarkConverter->convert($contents);
 
         return [
             'contents' => new HtmlString($htmlContents),
