@@ -1,7 +1,6 @@
 # Store & retrieve your static content in plain text files
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/sheets/run-tests?label=tests)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/sheets.svg?style=flat-square)](https://packagist.org/packages/spatie/sheets)
 
 Sheets is a Laravel package to store, retrieve & index content stored as text files. Markdown & front matter are supported out of the box, but you can parse & extract data from your files in whatever format you prefer.
