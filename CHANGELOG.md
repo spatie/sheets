@@ -2,6 +2,18 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.11.1 - 2024-02-22
+
+### What's Changed
+
+* Change convertToHtml() to convert() because convertToHtml() has been deprecated since commonmark 2.2. by @emergencyreports in https://github.com/spatie/sheets/pull/77
+
+### New Contributors
+
+* @emergencyreports made their first contribution in https://github.com/spatie/sheets/pull/77
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.11.0...1.11.1
+
 ## 1.11.0 - 2023-12-18
 
 ### What's Changed
