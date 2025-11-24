@@ -2,6 +2,15 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.12.2 - 2025-11-24
+
+### What's Changed
+
+* Update issue template by @AlexVanderbist in https://github.com/spatie/sheets/pull/83
+* Added Symfony 8 support to all symfony/* packages. by @thecaliskan in https://github.com/spatie/sheets/pull/86
+
+**Full Changelog**: https://github.com/spatie/sheets/compare/1.12.1...1.12.2
+
 ## 1.12.1 - 2025-02-14
 
 ### What's Changed
