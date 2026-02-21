@@ -4,10 +4,11 @@ namespace Spatie\Sheets\Tests\PathParsers;
 
 use Spatie\Sheets\PathParsers\SlugWithOrderParser;
 use Spatie\Sheets\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SlugWithOrderParserTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_extracts_an_order_and_slug_attribute_from_a_path()
     {
         $slugWithOrderParser = new SlugWithOrderParser();
@@ -20,7 +21,7 @@ class SlugWithOrderParserTest extends TestCase
         $this->assertEquals($expected, $slugWithOrderParser->parse('1.hello-world.md'));
     }
 
-    /** @test */
+    #[Test]
     public function it_extracts_an_order_and_slug_attribute_from_a_nested_path()
     {
         $slugWithOrderParser = new SlugWithOrderParser();

@@ -8,10 +8,11 @@ use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 use ReflectionClass;
 use Spatie\Sheets\Sheet;
+use PHPUnit\Framework\Attributes\Test;
 
 class SheetTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_create_a_sheet_with_attributes()
     {
         $attributes = [
@@ -26,7 +27,7 @@ class SheetTest extends TestCase
         $this->assertEquals($attributes, $reflection->getValue($sheet));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_a_specific_attribute()
     {
         $sheet = new Sheet(['foo' => 'bar']);
@@ -34,7 +35,7 @@ class SheetTest extends TestCase
         $this->assertEquals('bar', $sheet->foo);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_null_for_a_non_existing_attribute()
     {
         $sheet = new Sheet();
@@ -42,7 +43,7 @@ class SheetTest extends TestCase
         $this->assertNull($sheet->unknown);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_a_specific_attribute()
     {
         $sheet = new Sheet();
@@ -55,7 +56,7 @@ class SheetTest extends TestCase
         $this->assertEquals(['foo' => 'bar'], $reflection->getValue($sheet));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_extended_with_accessor()
     {
         $child = new class extends Sheet {
@@ -71,7 +72,7 @@ class SheetTest extends TestCase
         $this->assertEquals('baz', $sheet->foo);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_transformed_to_array_with_accessor()
     {
         $child = new class extends Sheet {
@@ -92,7 +93,7 @@ class SheetTest extends TestCase
         ], $sheet->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_implements_array_access()
     {
         $sheet = new Sheet(['foo' => 'bar']);
@@ -108,7 +109,7 @@ class SheetTest extends TestCase
         $this->assertEquals('baz', $sheet['foo']);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_transformed_to_an_array()
     {
         $sheet = new Sheet(['foo' => 'bar']);
@@ -117,7 +118,7 @@ class SheetTest extends TestCase
         $this->assertEquals(['foo' => 'bar'], $sheet->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_transformed_to_json()
     {
         $sheet = new Sheet(['foo' => 'bar']);
@@ -126,7 +127,7 @@ class SheetTest extends TestCase
         $this->assertEquals('{"foo":"bar"}', $sheet->toJson());
     }
 
-    /** @test */
+    #[Test]
     public function it_is_json_serializable()
     {
         $sheet = new Sheet(['foo' => 'bar']);
@@ -135,7 +136,7 @@ class SheetTest extends TestCase
         $this->assertEquals('{"foo":"bar"}', json_encode($sheet));
     }
 
-    /** @test */
+    #[Test]
     public function it_serialized_to_json_when_casted_to_a_string()
     {
         $sheet = new Sheet(['foo' => 'bar']);

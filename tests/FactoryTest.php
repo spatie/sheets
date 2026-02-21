@@ -6,10 +6,11 @@ use League\CommonMark\CommonMarkConverter;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;
+use PHPUnit\Framework\Attributes\Test;
 
 class FactoryTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_extracts_a_slug_attribute_from_a_path()
     {
         $factory = new Factory(

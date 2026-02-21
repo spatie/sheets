@@ -4,10 +4,11 @@ namespace Spatie\Sheets\Tests\ContentParsers;
 
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class MarkdownWithFrontMatterParserTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_converts_a_front_matter_document_to_attributes()
     {
         $markdownWithFrontMatterParser = $this->app->make(MarkdownWithFrontMatterParser::class);

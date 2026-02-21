@@ -7,10 +7,11 @@ use Illuminate\Support\Collection;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Tests\Integration\DummySheets\Post;
+use PHPUnit\Framework\Attributes\Test;
 
 class CustomSheetClassTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_maintain_a_collection_with_a_custom_sheet_class()
     {
         $posts = $this->app->make(Sheets::class)->all();
