@@ -5,10 +5,11 @@ namespace Spatie\Sheets\Tests\Integration;
 use Illuminate\Support\Collection;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Sheets;
+use PHPUnit\Framework\Attributes\Test;
 
 class CustomDiskTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_maintain_a_collection_on_a_specific_disk()
     {
         $content = $this->app->make(Sheets::class)->all();

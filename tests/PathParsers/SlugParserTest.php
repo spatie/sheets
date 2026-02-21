@@ -4,10 +4,11 @@ namespace Spatie\Sheets\Tests\PathParsers;
 
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SlugParserTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_extracts_a_slug_attribute_from_a_path()
     {
         $slugParser = new SlugParser();
@@ -15,7 +16,7 @@ class SlugParserTest extends TestCase
         $this->assertEquals(['slug' => 'hello-world'], $slugParser->parse('hello-world.md'));
     }
 
-    /** @test */
+    #[Test]
     public function it_extracts_a_slug_attribute_from_a_nested_path()
     {
         $slugParser = new SlugParser();

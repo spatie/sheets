@@ -7,10 +7,11 @@ use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Tests\Integration\DummySheets\Page;
 use Spatie\Sheets\Tests\Integration\DummySheets\Post;
+use PHPUnit\Framework\Attributes\Test;
 
 class MultipleCollectionsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_maintain_multiple_collections()
     {
         $content = $this->app->make(Sheets::class)->collection('content')->all();

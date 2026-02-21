@@ -9,13 +9,14 @@ use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Tests\Concerns\UsesFactory;
 use Spatie\Sheets\Tests\Concerns\UsesFilesystem;
 use Spatie\Sheets\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FilesystemRepositoryTest extends TestCase
 {
     use UsesFactory;
     use UsesFilesystem;
 
-    /** @test */
+    #[Test]
     public function it_can_get_a_sheet()
     {
         $filesystemRepository = new FilesystemRepository(
@@ -31,7 +32,7 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertEquals("<h1>Hello, world!</h1>\n", $sheet->contents);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_all_sheets()
     {
         $filesystemRepository = new FilesystemRepository(
@@ -55,7 +56,7 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertEquals("<h1>Hello, world!</h1>\n", $sheets[1]->contents);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_all_sheets_as_lazy_collection()
     {
         $filesystemRepository = new FilesystemRepository(
@@ -79,7 +80,7 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertEquals("<h1>Hello, world!</h1>\n", $sheets->get(1)->contents);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_null_on_non_existed_path()
     {
         $filesystemRepository = new FilesystemRepository(
@@ -90,7 +91,7 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertNull($filesystemRepository->get('invalid_path'));
     }
 
-    /** @test */
+    #[Test]
     public function it_gets_the_same_sheet_instance()
     {
         $filesystemRepository = new FilesystemRepository(
@@ -107,7 +108,7 @@ class FilesystemRepositoryTest extends TestCase
         $this->assertSame($sheet1, $sheet2);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_forget_a_cached_sheet()
     {
         $filesystemRepository = new FilesystemRepository(

@@ -7,10 +7,11 @@ use Illuminate\Support\Collection;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Sheets;
+use PHPUnit\Framework\Attributes\Test;
 
 class CustomPathParserTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_maintain_a_collection_with_a_custom_path_parser()
     {
         $posts = $this->app->make(Sheets::class)->all();

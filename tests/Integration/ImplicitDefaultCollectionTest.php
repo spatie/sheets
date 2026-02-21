@@ -6,10 +6,11 @@ use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Tests\Integration\DummySheets\Page;
 use Spatie\Sheets\Tests\Integration\DummySheets\Post;
+use PHPUnit\Framework\Attributes\Test;
 
 class ImplicitDefaultCollectionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_defaults_to_the_first_collection_if_no_default_is_provided()
     {
         $content = $this->app->make(Sheets::class)->all();
@@ -18,7 +19,7 @@ class ImplicitDefaultCollectionTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Page::class, $content);
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_exception_on_non_existed_collections()
     {
         $this->expectException(\RuntimeException::class);
@@ -27,13 +28,13 @@ class ImplicitDefaultCollectionTest extends TestCase
         $content = $this->app->make(Sheets::class)->collection('invalid_collection');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_get_null_on_the_default_collection()
     {
         $this->assertNull($this->app->make(Sheets::class)->get('non_existed_collections'));
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_exception_on_set_default_collection()
     {
         $this->expectException(\RuntimeException::class);

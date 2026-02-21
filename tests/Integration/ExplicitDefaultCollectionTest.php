@@ -6,10 +6,11 @@ use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Tests\Integration\DummySheets\Page;
 use Spatie\Sheets\Tests\Integration\DummySheets\Post;
+use PHPUnit\Framework\Attributes\Test;
 
 class ExplicitDefaultCollectionTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_accepts_an_explicit_default_collection()
     {
         $posts = $this->app->make(Sheets::class)->all();

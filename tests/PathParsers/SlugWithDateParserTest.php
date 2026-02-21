@@ -5,10 +5,11 @@ namespace Spatie\Sheets\Tests\PathParsers;
 use Illuminate\Support\Carbon;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class SlugWithDateParserTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_extracts_a_date_and_slug_attribute_from_a_path()
     {
         $slugWithDateParser = new SlugWithDateParser();
@@ -21,7 +22,7 @@ class SlugWithDateParserTest extends TestCase
         $this->assertEquals($expected, $slugWithDateParser->parse('1992-02-01.hello-world.md'));
     }
 
-    /** @test */
+    #[Test]
     public function it_extracts_a_date_and_slug_attribute_from_a_nested_path()
     {
         $slugWithDateParser = new SlugWithDateParser();
