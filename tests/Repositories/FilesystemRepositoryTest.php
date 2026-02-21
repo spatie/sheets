@@ -9,12 +9,12 @@ use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Tests\Concerns\UsesFactory;
 use Spatie\Sheets\Tests\Concerns\UsesFilesystem;
 use Spatie\Sheets\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FilesystemRepositoryTest extends TestCase
 {
     use UsesFactory;
     use UsesFilesystem;
-use PHPUnit\Framework\Attributes\Test;
 
     #[Test]
     public function it_can_get_a_sheet()
