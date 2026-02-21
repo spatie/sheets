@@ -2,6 +2,10 @@
 
 All notable changes to `sheets` will be documented in this file
 
+## 1.12.3 - 2026-02-21
+
+Support Laravel 13
+
 ## 1.12.2 - 2025-11-24
 
 ### What's Changed
