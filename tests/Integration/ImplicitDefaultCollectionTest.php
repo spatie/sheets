@@ -2,11 +2,11 @@
 
 namespace Spatie\Sheets\Tests\Integration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Tests\Integration\DummySheets\Page;
 use Spatie\Sheets\Tests\Integration\DummySheets\Post;
-use PHPUnit\Framework\Attributes\Test;
 
 class ImplicitDefaultCollectionTest extends TestCase
 {

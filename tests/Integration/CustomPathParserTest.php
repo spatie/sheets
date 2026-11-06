@@ -4,10 +4,10 @@ namespace Spatie\Sheets\Tests\Integration;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Sheets;
-use PHPUnit\Framework\Attributes\Test;
 
 class CustomPathParserTest extends TestCase
 {

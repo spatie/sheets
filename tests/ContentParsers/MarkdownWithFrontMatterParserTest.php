@@ -2,9 +2,9 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 class MarkdownWithFrontMatterParserTest extends TestCase
 {

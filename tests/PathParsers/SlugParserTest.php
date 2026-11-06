@@ -2,9 +2,9 @@
 
 namespace Spatie\Sheets\Tests\PathParsers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\PathParsers\SlugParser;
 use Spatie\Sheets\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 class SlugParserTest extends TestCase
 {

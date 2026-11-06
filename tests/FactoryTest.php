@@ -3,10 +3,10 @@
 namespace Spatie\Sheets\Tests;
 
 use League\CommonMark\CommonMarkConverter;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\ContentParsers\MarkdownWithFrontMatterParser;
 use Spatie\Sheets\Factory;
 use Spatie\Sheets\PathParsers\SlugParser;
-use PHPUnit\Framework\Attributes\Test;
 
 class FactoryTest extends TestCase
 {
