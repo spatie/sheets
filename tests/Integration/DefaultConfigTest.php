@@ -3,9 +3,9 @@
 namespace Spatie\Sheets\Tests\Integration;
 
 use Illuminate\Support\Collection;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\Sheet;
 use Spatie\Sheets\Sheets;
-use PHPUnit\Framework\Attributes\Test;
 
 class DefaultConfigTest extends TestCase
 {

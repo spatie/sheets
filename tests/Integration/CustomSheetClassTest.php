@@ -4,10 +4,10 @@ namespace Spatie\Sheets\Tests\Integration;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\PathParsers\SlugWithDateParser;
 use Spatie\Sheets\Sheets;
 use Spatie\Sheets\Tests\Integration\DummySheets\Post;
-use PHPUnit\Framework\Attributes\Test;
 
 class CustomSheetClassTest extends TestCase
 {

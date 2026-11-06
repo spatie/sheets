@@ -2,9 +2,9 @@
 
 namespace Spatie\Sheets\Tests\ContentParsers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\ContentParsers\JsonParser;
 use Spatie\Sheets\Tests\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 class JsonParserTest extends TestCase
 {
